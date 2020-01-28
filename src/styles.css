@@ -1,1 +1,479 @@
-/* You can add global styles to this file, and also import other style files */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGIN STYLING START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: #5C5C5C;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #ecf0f1;
+  position: relative;
+
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  padding: 8px 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.required::after {
+  content: '*';
+  color: red;
+  font-size: 14px;
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/webfonts/fa-solid-900.ttf);
+}
+
+.login-wrap {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3192AF;
+}
+
+
+.login-container {
+  width: 800px;
+  height: 430px;
+  border-radius: 5px;
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  background: #fff;
+  display: flex;
+  overflow: hidden;
+
+}
+
+
+.graphics-container {
+  flex-basis: 40%;
+  position: relative;
+
+}
+
+.graphical-circle {
+  /* background: rgb(222,98,98); */
+  background: linear-gradient(219deg, rgba(222, 98, 98, 1) 0%, rgba(249, 195, 112, 1) 39%);
+  width: 545px;
+  height: 545px;
+  border-radius: 50%;
+  position: absolute;
+  left: -180px;
+  top: -90px;
+}
+
+
+.form-container {
+  flex-basis: 60%;
+}
+
+.form-container form {
+  height: 100%;
+  margin-left: 140px;
+  margin-right: 50px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container form img {
+  max-width: 200px;
+  margin-bottom: 60px;
+}
+
+.form-container form .input-container {
+  width: 100%;
+  border: 1px solid #707070;
+  border-radius: 50px;
+  padding: 7px !important;
+  margin: 15px 5px;
+  position: relative;
+
+}
+
+.form-container form input {
+  width: 80%;
+  float: right;
+  border: none;
+  padding: 0;
+}
+
+.form-container form input::placeholder {
+  color: #cfcfcf;
+}
+
+.form-container form .input-container::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  position: absolute;
+  font-size: 24px;
+  margin-top: -7px;
+  color: #707070;
+  margin-left: 8px;
+}
+
+.form-container form .input-container.user::before {
+  content: "\f2bd";
+}
+
+
+.form-container form .input-container.password::before {
+
+  content: "\f023";
+
+}
+
+.form-container form input:focus {
+  outline: none;
+}
+
+.form-container form button {
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 50px;
+  border: none;
+  padding: 6px 10px !important;
+  background: linear-gradient(120deg, rgba(222, 98, 98, 1) 0%, rgba(249, 195, 112, 1) 80%);
+  color: #fff;
+  font-size: 18px;
+
+}
+
+
+.form-container form a {
+  color: #3192AF
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGIN STYLING END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+/* ++++++++++++++++++++++++++++++++++Header Styling Start+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+header {
+  /* border: 1px solid black; */
+  padding: 7px;
+  box-shadow: 0px 5px 10px #cfcfcf;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.logo-container {
+  margin-left: 50px;
+}
+
+.user-container {
+  align-self: center;
+  margin-right: 80px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-name::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f2bd";
+  font-weight: 400;
+  position: absolute;
+  margin-left: -30px;
+  color: #3192AF;
+  font-size: 24px;
+  margin-top: -6px;
+}
+
+.user-name::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f107";
+  font-weight: 400;
+  position: absolute;
+  margin-left: 8px;
+  color: #3192AF;
+  font-size: 24px;
+  margin-top: -6px;
+}
+
+.user-container.dropdown .dropdown-item:focus,
+.user-container.dropdown .dropdown-item:hover,
+.user-container.dropdown .dropdown-item:hover i {
+  background: #3192AF;
+  color: #fff;
+}
+
+
+.user-container i {
+  color: #3192AF;
+}
+
+/* ++++++++++++++++++++++++++++++++++Header Styling Start+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+
+/* *******************************LISTING STYLE START****************************************************** */
+.list-container {
+  background: #fff;
+
+}
+
+.list-header {
+  background: #3192AF;
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 10px;
+  border-radius: 4px 4px 0px 0px;
+  align-items: center;
+}
+
+.list-title-container {
+  color: #fff !important;
+}
+
+.list-button {
+  display: flex;
+}
+
+.list-button button {
+  color: #3192AF;
+  background: #fff;
+  padding: 3px 16px;
+  border: none;
+  border-radius: 3px;
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.list-button button::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f055";
+  font-weight: 400;
+  position: absolute;
+  margin-left: -30px;
+  color: #3192AF;
+  margin-top: -2px;
+  font-size: 17px;
+
+}
+
+.list-search {
+  margin-right: 15px;
+  background: #fff;
+  border-radius: 3px;
+}
+
+.list-search input {
+  border: none;
+  border-radius: 3px;
+  width: 83%;
+  float: right;
+  margin-top: 2px;
+  ;
+}
+
+.list-search input:focus {
+  outline: none;
+}
+
+.list-search input::placeholder {
+  color: #cfcfcf;
+}
+
+.list-search:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f002";
+  font-weight: 400;
+  position: absolute;
+  margin-left: 7px;
+  color: #3192AF;
+  margin-top: 1px;
+  font-size: 17px;
+}
+
+.action-icons i {
+  padding: 0px 10px;
+  cursor: pointer;
+}
+
+.action-icons i.fa-pen:hover {
+  color: #27ae60;
+}
+
+.action-icons i.fa-eye:hover {
+  color: #2980b9;
+}
+
+.action-icons i.fa-trash:hover {
+  color: #c0392b;
+}
+
+.count-container {
+  background: #efefef;
+  padding: 5px 10px;
+  border-radius: 0px 0px 4px 4px;
+  border: none;
+}
+
+/* *******************************LISTING STYLE END****************************************************** */
+
+
+/* ################################## PRIMENG STYLE START###################################################### */
+body .ui-table .ui-table-thead>tr {
+  background-color: #182C61;
+
+}
+
+body .ui-table .ui-table-thead>tr>th {
+  border: none;
+  color: #fff;
+  background-color: #182C61;
+
+}
+
+body .ui-table .ui-table-thead>tr>th:first-child {
+  border-radius: 4px 0px 0px 0px;
+}
+
+body .ui-table .ui-table-thead>tr>th:last-child {
+  border-radius: 0px 4px 0px 0px;
+}
+
+body .ui-table .ui-sortable-column:not(.ui-state-highlight):hover {
+  color: #182C61;
+  background: #fff;
+}
+
+body .ui-table .ui-sortable-column .ui-sortable-column-icon {
+  color: #fff;
+}
+
+body .ui-table .ui-table-tbody>tr>td {
+  border: none;
+}
+
+body .ui-paginator {
+  border: none;
+  background: #fff;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+  background-color: #3192AF;
+  border-radius: 50%;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page:not(.ui-state-active):hover,
+body .ui-paginator .ui-paginator-first,
+body .ui-paginator .ui-paginator-prev,
+body .ui-paginator .ui-paginator-next,
+body .ui-paginator .ui-paginator-last {
+  border-radius: 50%;
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+  padding: 5px 10px;
+  background: #3192AF;
+  border: none;
+}
+
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
+.ui-dialog .ui-dialog-titlebar-icon span {
+  color: #fff;
+}
+
+/* ################################## PRIMENG STYLE END###################################################### */
+
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%404 NOT Found Start%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+.not-found {
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.not-found img {
+  max-width: 100%;
+  height: 100vh;
+
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%404 NOT Found END%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+
+/* =======================================MODEL FORM START=================================================== */
+
+.modal-form input,
+.modal-form select {
+  border: none;
+  border-bottom: 1px solid #707070;
+  margin-bottom: 5px;
+  color: #333;
+  width: 100%;
+  display: block;
+  background: #fff;
+
+
+}
+
+.modal-form input:focus,
+.modal-form select:focus {
+  outline: none;
+  border-bottom: 2px solid #3192AF;
+}
+
+
+.modal-form button {
+  padding: 3px 20px;
+  margin-left: 5px;
+  border-radius: 3px;
+  border: none;
+
+}
+
+.modal-form button.save {
+  background: #3192AF;
+  padding-left: 33px !important;
+  color: #fff;
+}
+
+.modal-form button.save::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  position: absolute;
+  font-size: 16px;
+  margin-top: -1px;
+  color: #fff;
+  margin-left: -25px;
+  content: '\f0c7';
+}
+
+.modal-form button.save:disabled {
+  opacity: .5;
+}
+
+/* =======================================MODEL FORM END=================================================== */

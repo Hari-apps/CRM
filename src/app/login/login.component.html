@@ -1,0 +1,22 @@
+<div class="login-wrap">
+  <div class="login-container">
+    <div class=" graphics-container">
+      <div class="graphical-circle">
+
+      </div>
+    </div>
+    <div class="form-container">
+      <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate> 
+        <img src="assets/images/chatak_logo.jpg" alt=""> 
+        <div class="input-container user">
+          <input type="text" name="userName"  ngModel placeholder="User Name">
+        </div>
+        <div class="input-container password">
+          <input type="password" name="password" ngModel placeholder="Password">
+        </div>
+        <button type="submit">Login</button>
+        <a href="" class="mt-3">Forgot Password? </a>
+      </form>
+    </div>
+  </div>
+</div>
