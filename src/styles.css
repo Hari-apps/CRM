@@ -315,8 +315,11 @@ header {
 .action-icons i {
   padding: 0px 10px;
   cursor: pointer;
+  transition: all 400ms ease;
 }
-
+.action-icons i:hover{  
+  transform: scale(1.5) translateY(5px);
+}
 .action-icons i.fa-pen:hover {
   color: #27ae60;
 }

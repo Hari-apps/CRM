@@ -1,3 +1,5 @@
+<app-loader></app-loader>
+
 <header>
   <div class="logo-container">
     <img src="assets/images/chatak_logo.jpg" alt="" width="130px">
@@ -24,7 +26,7 @@
       <div class="list-button">
         <div class="list-search">
           <input type="text" name="" id="" placeholder="Global Search"
-            (input)="userList.filterGlobal($event.target.value, 'contains')">
+            (input)="dt.filterGlobal($event.target.value, 'contains')">
         </div>
 
         <button (click)="addNewUser()">Add New User</button>
@@ -32,7 +34,7 @@
     </div>
 
     <div class="list-body p-3">
-      <!-- <p-table [columns]="cols" [value]="userList" #userList [paginator]="true" [rows]="5">
+      <p-table #dt [columns]="cols" [value]="userList" [paginator]="true" [rows]="5" [showLoader]="true">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -50,40 +52,16 @@
               {{rowData[col.field]}}
             </td>
             <td class="action-icons">
-              <i class="fas fa-pen" pTooltip="Edit User" tooltipPosition="top" ></i>
-              <i class="fas fa-trash" pTooltip="Delete User" tooltipPosition="top"
-                ></i>
+              <i class="fas fa-pen" (click)="editUser(rowData.userId)" pTooltip="Edit User" tooltipPosition="top"></i>
+              <i class="fas fa-trash" (click)="deleteUser(rowData.userId)" pTooltip="Delete User"
+                tooltipPosition="top"></i>
             </td>
           </tr>
         </ng-template>
       </p-table>
       <div class="count-container">
-        Total Count: <b></b>
-      </div> -->
-
-      <p-table [value]="userList" [paginator]="true"  [rows]="5">
-        <ng-template pTemplate="header">
-          <tr>
-            <th *ngFor="let col of cols">
-              {{col.header}}
-            </th>
-            <th>Action</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData>
-          <tr>
-            <td *ngFor="let col of cols">
-              {{rowData[col.field]}}
-            </td>
-            <td class="action-icons">
-              <i class="fas fa-pen" (click)="editUser(rowData.userId)" pTooltip="Edit User" tooltipPosition="top" ></i>
-              <i class="fas fa-trash" (click)="deleteUser(rowData.userId)" pTooltip="Delete User" tooltipPosition="top"
-                ></i>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-   
+        Total Count: <b>{{dt.totalRecords}}</b>
+      </div>
     </div>
   </div>
 </div>
@@ -151,3 +129,6 @@
     </div>
   </form>
 </p-dialog>
+
+
+<!-- <app-loader></app-loader> -->

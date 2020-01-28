@@ -14,6 +14,8 @@ export class AdminComponent implements OnInit {
 
   @ViewChild('modalForm', { static: false }) form: NgForm;
 
+  show: boolean = false;
+
   display: boolean = false;
 
   dailogTitle: string;
@@ -45,7 +47,31 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.userName = window.localStorage.getItem('userName');
+    this.getUserList();
+    this.getRoles();
+    this.getRegions();
 
+  }
+
+  getUserList() {
+    this.show = true;
+    this.api.userList().subscribe((data: any) => {
+      this.userList = data.userList;
+      console.log(data);
+      this.show = false;
+    });
+  }
+
+  getRoles() {
+    this.api.getRoles().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.userRoles = data.roleList;
+      }
+    );
+  }
+
+  getRegions() {
     this.api.getRegions().subscribe(
       (data: any) => {
         console.log(data);
@@ -53,33 +79,10 @@ export class AdminComponent implements OnInit {
         this.regions = data.regionRequest;
       }
     );
-
-    this.api.getRoles().subscribe(
-      (data: any) => {
-        console.log(data);
-        this.userRoles = data.roleList;
-      }
-    );
-
-
-    this.api.userList().subscribe((data: any) => {
-      this.userList = data.userList;
-      console.log(data)
-    });
-
-  }
-
-  getRole(id) {
-    let roleType;
-    this.userRoles.filter(data => {
-      if (data.roleId === id) {
-        roleType = data.roleType;
-      }
-    });
-    return roleType;
   }
 
   addNewUser() {
+    this.errorMessage = "";
     this.id = 0;
     this.modalWindowData = {};
     console.log(this.userList);
@@ -102,13 +105,6 @@ export class AdminComponent implements OnInit {
   }
 
   deleteUser(id) {
-    console.log(id);
-    // const index: number = this.users.indexOf(id);
-    // console.log(index);
-    // if (index !== -1) {
-    //   console.log(this.users.splice(index, 1));
-    // }
-
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -129,13 +125,12 @@ export class AdminComponent implements OnInit {
             )
           }
         });
-
-
-
       }
     })
 
   }
+
+
   onHideModalWindow() {
     this.display = false;
   }
