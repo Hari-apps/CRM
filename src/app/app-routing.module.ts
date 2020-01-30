@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './authentication/auth.guard';
+import { CompanyDetailsViewComponent } from './company-details-view/company-details-view.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
@@ -17,13 +19,20 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: 'admin',
     component: AdminComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
-
   {
-    path:'**',
+    path:'company-details-view',
+    component: CompanyDetailsViewComponent
+  },
+  {
+    path: '**',
     component: NotFoundComponent
   }
 ];

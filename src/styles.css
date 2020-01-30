@@ -317,9 +317,11 @@ header {
   cursor: pointer;
   transition: all 400ms ease;
 }
-.action-icons i:hover{  
+
+.action-icons i:hover {
   transform: scale(1.5) translateY(5px);
 }
+
 .action-icons i.fa-pen:hover {
   color: #27ae60;
 }
@@ -443,8 +445,14 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
 
 }
 
+
+.modal-form textarea {
+  width: 100%;  
+}
+
 .modal-form input:focus,
-.modal-form select:focus {
+.modal-form select:focus,
+.modal-form textarea:focus {
   outline: none;
   border-bottom: 2px solid #3192AF;
 }
@@ -480,3 +488,18 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
 }
 
 /* =======================================MODEL FORM END=================================================== */
+
+
+.company-view{
+  display: flex;
+  justify-content: space-between;
+}
+
+.company-view i{
+  padding-right: 7px;
+  color: #3192AF;
+}
+
+.company-view b{
+  color:#3192AF;
+}

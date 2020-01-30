@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2'
-import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import { UserModal } from '../modals/user.modal';
+import Swal from 'sweetalert2';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   @ViewChild('modalForm', { static: false }) form: NgForm;
 
-  show: boolean = false;
+  displayStatusModal: boolean = false;
 
   display: boolean = false;
 
@@ -35,6 +34,8 @@ export class AdminComponent implements OnInit {
 
   id: number;
 
+  dataToStatus: any = {};
+
   cols: any[] = [
     { field: 'userId', header: 'User ID ' },
     { field: 'userName', header: 'Name' },
@@ -54,11 +55,9 @@ export class AdminComponent implements OnInit {
   }
 
   getUserList() {
-    this.show = true;
     this.api.userList().subscribe((data: any) => {
       this.userList = data.userList;
       console.log(data);
-      this.show = false;
     });
   }
 
@@ -91,48 +90,55 @@ export class AdminComponent implements OnInit {
     console.log(this.modalWindowData);
   }
 
-  editUser(id) {
-    this.id = id;
+  editUser(data) {
     this.display = true;
     this.dailogTitle = 'Edit user';
-    console.log(id);
-    this.userList.filter(data => {
-      if (data.userId === id) {
-        this.modalWindowData = data;
-        this.modalWindowData.country = +data.country;
-      }
-    })
+    console.log(data);
+    this.modalWindowData = data;
+    
+    // this.id = data.userId;
+   
+    // this.userList.filter(data => {
+    //   if (data.userId === id) {
+    //     this.modalWindowData = data;
+    //     this.modalWindowData.country = +data.country;
+
+    //     console.log(this.modalWindowData);
+    //   }
+    // })
   }
 
-  deleteUser(id) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.value) {
+  showStatusModel(data) {
 
-        this.api.deleteUser(id).subscribe((data: any) => {
-          if (data.status === 0) {
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-          }
-        });
+    console.log(data);
+    this.displayStatusModal = true;
+    this.dataToStatus = {
+      entityId: data.userId,
+      status: data.status,
+      entityType: data.userRoleName,
+      reason: ''
+    }
+  }
+
+  userStatus(data) {
+
+    this.api.userStatus(data).subscribe((data: any) => {
+      if (data.status === '0') {
+        this.getUserList();
+        Swal.fire(
+          'Success!',
+          'New User Created successfully!',
+          'success'
+        );
+        this.displayStatusModal = false;
       }
-    })
-
+    });
   }
 
 
   onHideModalWindow() {
     this.display = false;
+    this.displayStatusModal = false;
   }
 
   onSubmit() {
@@ -140,8 +146,14 @@ export class AdminComponent implements OnInit {
     if (this.form.control.valid) {
       if (this.id == 0) {
         this.api.createUser(this.form.control.value).subscribe((data: any) => {
-          if (data.status === 0) {
-            console.log(data.statusMessage);
+          console.log(data);
+          if (data.status === '0') {
+            this.display = false;
+            Swal.fire(
+              'Success!',
+              'New User Created successfully!',
+              'success'
+            );
           } else {
             this.errorMessage = data.statusMessage;
           }
@@ -150,18 +162,8 @@ export class AdminComponent implements OnInit {
         this.api.updateUser(this.form.control.value, this.id).subscribe(data => console.log(data));
       }
     }
-
-
-
-
-
-
-
-
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
+
+
 }

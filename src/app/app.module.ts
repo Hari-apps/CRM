@@ -17,6 +17,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DialogModule } from 'primeng/dialog';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { CompanyDetailsViewComponent } from './company-details-view/company-details-view.component';
+import { HeaderComponent } from './home/header/header.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { LoaderInterceptorService } from './services/loader-interceptor.service'
     LoginComponent,
     AdminComponent,
     NotFoundComponent,
-    LoaderComponent
+    LoaderComponent,
+    CompanyDetailsViewComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

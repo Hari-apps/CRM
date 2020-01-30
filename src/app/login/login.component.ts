@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
               'success'
             );
             console.log(data);
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userName', this.form.value.userName);
+            localStorage.setItem('roleType', data.roleType);
           } else {
             Swal.fire({
               title: 'Error!',
