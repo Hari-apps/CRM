@@ -6,6 +6,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { CompanyDetailsViewComponent } from './company-details-view/company-details-view.component';
 import { HomeComponent } from './home/home.component';
+import { CompanyManagementComponent } from './company-management/company-management.component';
+import { CompanyContactComponent } from './company-contact/company-contact.component';
 
 
 const routes: Routes = [
@@ -28,7 +30,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'company-details-view',
+    path: 'company-management',
+    component: CompanyManagementComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'company-contact/:id',
+    component: CompanyContactComponent,
+  },
+  {
+    path:'company-details-view/:id',
     component: CompanyDetailsViewComponent
   },
   {
