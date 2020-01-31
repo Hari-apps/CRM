@@ -50,7 +50,7 @@
               {{rowData[col.field]}}
             </td>
             <td class="action-icons">
-              <i class="fas fa-pen" (click)="editUser(rowData)" pTooltip="Edit User" tooltipPosition="top"></i>
+              <i class="fas fa-pen" (click)="editUser(rowData.userId)" pTooltip="Edit User" tooltipPosition="top"></i>
               <i [ngClass]="rowData.status==='Active'?'fas fa-circle text-success':' fas fa-circle text-muted'" (click)="showStatusModel(rowData)" pTooltip="User Status"
                 tooltipPosition="top"></i> 
             </td>
@@ -79,62 +79,7 @@
   </div>
 </footer>
 
-
-<p-dialog [header]="dailogTitle" [(visible)]="display" modal='true' [style]="{width: '480px'}"
-  [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">
-  <form class="modal-form" #modalForm="ngForm" novalidate (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-md-6">
-        <label for="" class="required">Role</label>
-        <select name="userRole"  [(ngModel)]="modalWindowData.userRole">
-          <option *ngFor="let role of userRoles" [ngValue]="role.roleId">{{role.roleType}}</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <label for="" class="required">User Name</label>
-        <input type="text" name="userName"  [(ngModel)]="modalWindowData.userName" minLength="3" required readonly>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <label for="" class="required">First Name</label>
-        <input type="text" name="firstName"  [(ngModel)]="modalWindowData.firstName" required>
-      </div>
-      <div class="col-md-6">
-        <label for="" class="required">Last Name</label>
-        <input type="text" name="lastName"  [(ngModel)]="modalWindowData.lastName" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"> <label for="" class="required">Email Address</label>
-        <input type="email" name="email"  [(ngModel)]="modalWindowData.email" required></div>
-      <div class="col-md-6">
-        <label for="" class="required">Contact Number</label>
-        <input type="number" name="phoneNumber"  [(ngModel)]="modalWindowData.phoneNumber" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"> <label for="">Extension</label>
-        <input type="number" name="extension"  [(ngModel)]="modalWindowData.extension"></div>
-      <div class="col-md-6">
-        <label for="" class="required">Regions</label>
-        <select name="region"  [(ngModel)]="modalWindowData.country" required>
-          <option *ngFor="let region of regions" [ngValue]="region.regionId">{{region.regionName}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-6  "><button *ngIf="errorMessage.length!=0" type="button"
-          class="btn btn-danger">{{errorMessage}}</button></div>
-      <div class="col-md-6 text-right">
-        <button class="cancel" type="button" (click)="onHideModalWindow()">cancel</button> <button type="submit"
-          [disabled]="modalForm.invalid" class="save">Save</button>
-      </div>
-
-    </div>
-
-  </form>
-</p-dialog>
+ 
  
 <p-dialog [header]="dailogTitle" [(visible)]="displayStatusModal" modal='true' [style]="{width: '480px'}"
   [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">

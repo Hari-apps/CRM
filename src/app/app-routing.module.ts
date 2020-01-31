@@ -8,6 +8,7 @@ import { CompanyDetailsViewComponent } from './company-details-view/company-deta
 import { HomeComponent } from './home/home.component';
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
+import { AdminFormComponent } from './admin-form/admin-form.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,15 @@ const routes: Routes = [
   {
     path:'company-contact/:id',
     component: CompanyContactComponent,
+  },
+  {
+    
+    path: 'admin-form',
+    component: AdminFormComponent
+  },
+  {
+    path: 'admin-form/:id',
+    component: AdminFormComponent
   },
   {
     path:'company-details-view/:id',

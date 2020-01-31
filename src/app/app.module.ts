@@ -23,6 +23,7 @@ import { FooterComponent } from './home/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
+import { AdminFormComponent } from './admin-form/admin-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CompanyContactComponent } from './company-contact/company-contact.compo
     FooterComponent,
     HomeComponent,
     CompanyManagementComponent,
-    CompanyContactComponent
+    CompanyContactComponent,
+    AdminFormComponent
   ],
   imports: [
     BrowserModule,
