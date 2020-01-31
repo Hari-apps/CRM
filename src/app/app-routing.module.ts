@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { CompanyDetailsViewComponent } from './company-details-view/company-details-view.component';
 import { HomeComponent } from './home/home.component';
+import { AdminFormComponent } from './admin-form/admin-form.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,14 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-form',
+    component: AdminFormComponent
+  },
+  {
+    path: 'admin-form/:id',
+    component: AdminFormComponent
   },
   {
     path:'company-details-view',

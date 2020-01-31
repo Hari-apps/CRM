@@ -265,6 +265,17 @@ header {
   padding-left: 40px;
   font-size: 14px;
 }
+.list-button button.user-list-btn:before{
+  font-family: "Font Awesome 5 Free";
+  content: "\f03a";
+  font-weight: 400;
+  position: absolute;
+  margin-left: -30px;
+  color: #3192AF;
+  margin-top: -2px;
+  font-size: 17px;
+}
+
 
 .list-button button::before {
   font-family: "Font Awesome 5 Free";
@@ -490,6 +501,41 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
 /* =======================================MODEL FORM END=================================================== */
 
 
+
+/* #########################################MASTER FORM START########################################################### */
+
+.master-form-card {
+  
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.master-form-header{
+  font-weight: bold;
+  padding-bottom: 10px; 
+}
+
+.master-form-card .row{
+  margin-bottom: 5px;
+}
+
+.list-button i{
+  padding: 6px 10px;
+  margin-left: 5px;
+  border-radius: 3px;
+  border: none;
+  background: #fff;
+  color: #3192AF;
+  cursor: pointer;
+}
+/* #########################################MASTER FORM START########################################################### */
+
+
+
+
 .company-view{
   display: flex;
   justify-content: space-between;
@@ -503,3 +549,6 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
 .company-view b{
   color:#3192AF;
 }
+
+
+

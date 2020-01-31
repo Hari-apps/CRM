@@ -16,36 +16,27 @@ export class ApiService {
 
   }
 
-  createUser(data) {
-    console.log(data);
+  createUser(data) { 
     return this.http.post(`${this.baseURL}/createUser`, data);
   }
 
-  updateUser(data:any, id) {
-    console.log(data);  
+  updateUser(data) { 
     return this.http.post(`${this.baseURL}/updateProfile`, data);
 
   }
 
-  userStatus(data){ 
-    return this.http.post(`${this.baseURL}/updateStatus/`,data);
-    
+  userStatus(data) {
+    return this.http.post(`${this.baseURL}/updateStatus/`, data);
+
   }
 
   userList() {
-    return this.http.get(`${this.baseURL}/findAllUsers`); 
+    return this.http.get(`${this.baseURL}/findAllUsers`);
   }
 
-  // userList() {
-  //   return this.http.post(`${this.baseURL}/getProfile`, {}); 
-  // }
-
-
-// for future search
-  // userList() {
-  //   return this.http.post(`${this.baseURL}/getProfile`, {}); 
-  // }
-
+  getUserById(data) {
+    return this.http.post(`${this.baseURL}/getProfile`, data); 
+  }
 
   getRegions() {
     return this.http.get('http://192.168.5.163:9083/core-service/crm/core/1/0/getRegions');
@@ -58,20 +49,30 @@ export class ApiService {
   getRoles() {
     return this.http.get('http://192.168.5.163:9085/user-service/license/user/1/0/getRolesToMap');
   }
+  getCountryList() {
+    return this.http.get('http://192.168.5.163:9083/core-service/license/core/1/0/getCountryList');
+  }
 
+  getStateList(data) { 
+    return this.http.post('http://192.168.5.163:9083/core-service/license/core/1/0/getStatesByCountryId', data)
+  }
+
+  getCityList(data){
+    return this.http.post('http://192.168.5.163:9083/core-service/license/core/1/0/getCitiesByStateId', data);
+  }
   // company Detail View
 
-  getCompanyData(id){
-    return this.http.post('http://192.168.5.163:9083/core-service/crm/core/1/0/getCompanys', {id})
+  getCompanyData(id) {
+    return this.http.post('http://192.168.5.163:9083/core-service/crm/core/1/0/getCompanys', { id })
   }
 
-  getCompanyCommentList(){
-    return this.http.get('http://192.168.5.163:9083/core-service/crm/core/1/0/getAllCompanyInteraction');
+  getCompanyCommentList() {
+    return this.http.get('http://192.168.2.217:9083/core-service/crm/core/1/0/getAllCompanyInteraction');
 
   }
 
-  createComment(data){ 
-        return this.http.post('http://192.168.2.217:9083/core-service/crm/core/1/0/createCompanyInteraction', data)
+  createComment(data) {
+    return this.http.post('http://192.168.2.217:9083/core-service/crm/core/1/0/createCompanyInteraction', data)
   }
 
 }

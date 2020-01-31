@@ -56,15 +56,13 @@ export class AdminComponent implements OnInit {
 
   getUserList() {
     this.api.userList().subscribe((data: any) => {
-      this.userList = data.userList;
-      console.log(data);
+      this.userList = data.userList; 
     });
   }
 
   getRoles() {
     this.api.getRoles().subscribe(
-      (data: any) => {
-        console.log(data);
+      (data: any) => { 
         this.userRoles = data.roleList;
       }
     );
@@ -72,44 +70,21 @@ export class AdminComponent implements OnInit {
 
   getRegions() {
     this.api.getRegions().subscribe(
-      (data: any) => {
-        console.log(data);
-
+      (data: any) => { 
         this.regions = data.regionRequest;
       }
     );
   }
 
   addNewUser() {
-    this.errorMessage = "";
-    this.id = 0;
-    this.modalWindowData = {};
-    console.log(this.userList);
-    this.display = true;
-    this.dailogTitle = 'Add New User';
-    console.log(this.modalWindowData);
+    this.router.navigate(['/admin-form']);
   }
 
-  editUser(data) {
-    this.display = true;
-    this.dailogTitle = 'Edit user';
-    console.log(data);
-    this.modalWindowData = data;
-    this.modalWindowData.country = +data.country;
-    // this.id = data.userId;
-
-    // this.userList.filter(data => {
-    //   if (data.userId === id) {
-    //     this.modalWindowData = data;
-    //     this.modalWindowData.country = +data.country;
-
-    //     console.log(this.modalWindowData);
-    //   }
-    // })
+  editUser(id) {
+    this.router.navigate(['/admin-form', id]);
   }
 
-  showStatusModel(data) {
-    console.log(data);
+  showStatusModel(data) { 
     this.displayStatusModal = true;
     this.dataToStatus = {
       entityId: data.userId,
@@ -139,50 +114,6 @@ export class AdminComponent implements OnInit {
     this.display = false;
     this.displayStatusModal = false;
   }
-
-  onSubmit() {
-    this.errorMessage = "";
-    if (this.form.control.valid) {
-      if (this.id == 0) {
-        this.api.createUser(this.form.control.value).subscribe((data: any) => {
-          console.log(data);
-          if (data.status === '0') {
-            this.display = false;
-            Swal.fire(
-              'Success!',
-              'New User Created successfully!',
-              'success'
-            );
-
-            this.getUserList();
-          } else {
-            this.errorMessage = data.statusMessage;
-          }
-        });
-      } else {
-        this.api.updateUser(this.form.control.value, this.id).subscribe((data: any) => {
-          console.log(data);
-          if (data.status === '0') {
-            this.getUserList();
-            this.display = false;
-            Swal.fire(
-              'Success!',
-              'User Updated successfully!',
-              'success'
-            );
-          } else {
-            Swal.fire({
-              title: 'Error!',
-              text: data.statusMessage,
-              icon: 'error',
-              confirmButtonText: 'Try Again'
-            })
-          }
-        });
-      }
-    }
-  }
-
 
   logout() {
     localStorage.clear();

@@ -21,6 +21,7 @@ import { CompanyDetailsViewComponent } from './company-details-view/company-deta
 import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { AdminFormComponent } from './admin-form/admin-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './home/home.component';
     CompanyDetailsViewComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    AdminFormComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="form-container">
-      <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate> 
+      <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate> 
         <img src="assets/images/chatak_logo.jpg" alt=""> 
         <div class="input-container user">
           <input type="text" name="userName"  ngModel placeholder="User Name">

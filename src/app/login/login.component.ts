@@ -21,10 +21,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-
-    console.log(this.form.control.value);
-    this.api.login(this.form.control.value)
+  onSubmit(data) { 
+    this.api.login(data)
       .subscribe(
         (data: any) => {
           if (data.status === "0") {
@@ -33,8 +31,7 @@ export class LoginComponent implements OnInit {
               'Success!',
               'You are logged in successfully!',
               'success'
-            );
-            console.log(data);
+            ); 
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userName', this.form.value.userName);
             localStorage.setItem('roleType', data.userType);
