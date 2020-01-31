@@ -24,7 +24,6 @@ export class CompanyContactComponent implements OnInit {
 
   modalWindowData: any = {};
 
-
   userName: string;
 
   regions: any[];
@@ -50,24 +49,18 @@ export class CompanyContactComponent implements OnInit {
     { field: 'location', header: 'Location' },
     { field: 'mobileNumber', header: 'Mobile' },
     { field: 'officeNumber', header: 'Office Number' },
-    // { field: 'additionalInfo', header: 'Additional Info' },
   ];
-
   
 
   constructor(private api: ApiService, private router: Router,private route:ActivatedRoute) {
-
     this.route.params.subscribe((params:Params)=>{
       this.companyId = +params['id'];
-      console.log("companyid",this.companyId);
     });
-
    }
 
   ngOnInit() {
     this.userName = window.localStorage.getItem('userName');
     this.getCompanyContactList();
-
   }
 
   getCompanyContactList() {
@@ -77,7 +70,6 @@ export class CompanyContactComponent implements OnInit {
     };
     this.api.companyContactList(data).subscribe((data: any) => {
       this.companyContactList = data.companyContactList;
-      console.log(data);
     });
   }
 
@@ -85,36 +77,27 @@ export class CompanyContactComponent implements OnInit {
   addNewComapnyContact() {
     this.id = 0;
     this.errorMessage = "";
-    this.modalWindowData = {};
-    
-    console.log(this.companyContactList);
+    this.modalWindowData = {};   
     this.display = true;
     this.dailogTitle = 'Add DB';
-    // this.statusListData = this.statusListAdd;
-   
-    console.log("add data", this.modalWindowData);
   }
 
   //Edit Company
-  editCompany(id) {
-   
+  editCompany(id) {  
     this.id = id;
     this.errorMessage = "";
     this.display = true;
     this.dailogTitle = 'Edit DB';
-    console.log("selected id", id);
     this.companyContactList.filter(data => {
-      console.log(data);
       if (data.companyContactId === id) {
         this.modalWindowData = data;
-        console.log("Edit Contact Modal Data",this.modalWindowData);
       }
-    })
+    });
   }
 
   showStatusModel(data) {
-    console.log("selected Data",data);
     this.displayStatusModal = true;
+    this.dailogTitle ="Change Status";
     this.dataToStatus = {
       companyContactId: data.companyContactId,
       contactName: data.contactName,
@@ -123,9 +106,7 @@ export class CompanyContactComponent implements OnInit {
     }
   }
 
-
   companyContactStatus(data) {
-
     this.api.companyContactChangeStatus(data).subscribe((data: any) => {
       if (data.status === '0') {
         this.getCompanyContactList();
@@ -152,9 +133,7 @@ export class CompanyContactComponent implements OnInit {
         let data = this.form.control.value;
         let createdBy = this.userName;
         let companyId = this.companyId;
-        console.log("forData", data);
         this.api.createCompanyContact({ ...data, companyId, createdBy }).subscribe((data: any) => {
-          console.log(data);
           if (data.status === "00") {
             this.display = false;
             Swal.fire(
@@ -162,7 +141,6 @@ export class CompanyContactComponent implements OnInit {
               'Company Details Inserted successfully!',
               'success'
             );
-            console.log(data.statusMessage);
             this.getCompanyContactList();
           } else {
             this.errorMessage = data.statusMessage;
@@ -184,7 +162,6 @@ export class CompanyContactComponent implements OnInit {
         let companyId = this.companyId;
         let status = this.modalWindowData.status;
         this.api.updateCompanyContact({ ...data, modifiedBy, companyContactId,companyId,status }).subscribe((data: any) => {
-          console.log(data);
           if (data.status === "00") {
             this.display = false;
             Swal.fire(
@@ -192,7 +169,6 @@ export class CompanyContactComponent implements OnInit {
               'Company Contact Details Updated successfully!',
               'success'
             );
-            console.log(data.statusMessage);
             this.getCompanyContactList();
           } else {
             this.errorMessage = data.statusMessage;

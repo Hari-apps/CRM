@@ -1,6 +1,3 @@
-
-<app-loader></app-loader>
-
 <header>
   <div class="logo-container">
     <img src="assets/images/chatak_logo.jpg" alt="" width="130px">
@@ -26,7 +23,7 @@
       </div>
       <div class="list-button">
         <div class="list-search">
-          <input type="text" name="" id="" placeholder="Global Search"
+          <input type="text" name=""  placeholder="Global Search"
             (input)="dt.filterGlobal($event.target.value, 'contains')">
         </div>
 
@@ -35,7 +32,7 @@
     </div>
 
     <div class="list-body p-3">
-      <p-table #dt [columns]="cols" [value]="userList" [paginator]="true" [rows]="5" [showLoader]="true">
+      <p-table #dt [columns]="cols" [value]="userList" [paginator]="true" [rows]="10" [showLoader]="true">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -89,39 +86,39 @@
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Role</label>
-        <select name="userRole" id="" [(ngModel)]="modalWindowData.userRole">
+        <select name="userRole"  [(ngModel)]="modalWindowData.userRole">
           <option *ngFor="let role of userRoles" [ngValue]="role.roleId">{{role.roleType}}</option>
         </select>
       </div>
       <div class="col-md-6">
         <label for="" class="required">User Name</label>
-        <input type="text" name="userName" id="" [(ngModel)]="modalWindowData.userName" minLength="3" required>
+        <input type="text" name="userName"  [(ngModel)]="modalWindowData.userName" minLength="3" required readonly>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">First Name</label>
-        <input type="text" name="firstName" id="" [(ngModel)]="modalWindowData.firstName" required>
+        <input type="text" name="firstName"  [(ngModel)]="modalWindowData.firstName" required>
       </div>
       <div class="col-md-6">
         <label for="" class="required">Last Name</label>
-        <input type="text" name="lastName" id="" [(ngModel)]="modalWindowData.lastName" required>
+        <input type="text" name="lastName"  [(ngModel)]="modalWindowData.lastName" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6"> <label for="" class="required">Email Address</label>
-        <input type="email" name="email" id="" [(ngModel)]="modalWindowData.email" required></div>
+        <input type="email" name="email"  [(ngModel)]="modalWindowData.email" required></div>
       <div class="col-md-6">
         <label for="" class="required">Contact Number</label>
-        <input type="number" name="phoneNumber" id="" [(ngModel)]="modalWindowData.phoneNumber" required>
+        <input type="number" name="phoneNumber"  [(ngModel)]="modalWindowData.phoneNumber" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6"> <label for="">Extension</label>
-        <input type="number" name="extension" id="" [(ngModel)]="modalWindowData.extension"></div>
+        <input type="number" name="extension"  [(ngModel)]="modalWindowData.extension"></div>
       <div class="col-md-6">
         <label for="" class="required">Regions</label>
-        <select name="region" id="" [(ngModel)]="modalWindowData.country" required>
+        <select name="region"  [(ngModel)]="modalWindowData.country" required>
           <option *ngFor="let region of regions" [ngValue]="region.regionId">{{region.regionName}}</option>
         </select>
       </div>
@@ -145,11 +142,11 @@
      <div class="row">
        <div class="col-md-6">
          <label for="" class="required">User ID</label>
-         <input type="text" name="entityId" [(ngModel)]="dataToStatus.entityId">
+         <input type="text" name="entityId" [(ngModel)]="dataToStatus.entityId" [readonly]="true">
        </div>
        <div class="col-md-6">
          <label for="" class="required">User Type</label>
-         <input type="text" name="entityType"  [(ngModel)]="dataToStatus.entityType">
+         <input type="text" name="entityType"  [(ngModel)]="dataToStatus.entityType" [readonly]="true">
        </div>
       </div>
        <div class="row">
@@ -162,13 +159,13 @@
          </div>
          <div class="col-md-6">
            <label for="" class="required">reason</label>
-           <textarea name="reason" id="" cols=""  rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
+           <textarea name="reason"  cols=""  rows="3" [(ngModel)]="dataToStatus.reason" required></textarea>
          </div>
 
        </div>
 
        <div class="text-right mt-3">
-         <button class="save" type="submit">Save</button>
+         <button class="save" type="submit" [disabled]="statusForm.invalid">Save</button>
        </div>
    
    </form>

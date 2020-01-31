@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             console.log(data);
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userName', this.form.value.userName);
-            localStorage.setItem('roleType', data.roleType);
+            localStorage.setItem('roleType', data.userType);
           } else {
             Swal.fire({
               title: 'Error!',

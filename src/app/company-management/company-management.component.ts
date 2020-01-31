@@ -59,8 +59,6 @@ export class CompanyManagementComponent implements OnInit {
     //Get Regions
     this.api.getRegions().subscribe(
       (data: any) => {
-        console.log(data);
-
         this.regions = data.regionRequest;
       }
     );
@@ -68,7 +66,6 @@ export class CompanyManagementComponent implements OnInit {
     //Get Verticals
     this.api.getVerticals().subscribe(
       (data: any) => {
-        console.log("verticals", data);
         this.verticals = data.verticalsRequests;
       });
 
@@ -80,7 +77,6 @@ export class CompanyManagementComponent implements OnInit {
     //Get Company List
     this.api.companyList().subscribe((data: any) => {
       this.companyList = data.customerRequest;
-      console.log(data);
     });
   }
 
@@ -90,12 +86,9 @@ export class CompanyManagementComponent implements OnInit {
     this.errorMessage = "";
     this.modalWindowData = {};
     this.modalWindowData.status = this.statusList[0].status;
-    console.log(this.companyList);
     this.display = true;
     this.dailogTitle = 'Add New Company';
-    // this.statusListData = this.statusListAdd;
     this.statusForNew = true; //modalWindowData.status
-    console.log("add data", this.modalWindowData);
   }
 
   //Edit Company
@@ -105,9 +98,7 @@ export class CompanyManagementComponent implements OnInit {
     this.errorMessage = "";
     this.display = true;
     this.dailogTitle = 'Edit Company';
-    console.log("selected id", id);
     this.companyList.filter(data => {
-      console.log(data);
       if (data.companyId === id) {
         this.modalWindowData = data;
       }
@@ -126,9 +117,7 @@ export class CompanyManagementComponent implements OnInit {
         let data = this.form.control.value;
         let createdBy = this.userName;
         let status = this.modalWindowData.status;
-        console.log("forData", data);
         this.api.createCompany({ ...data, createdBy, status }).subscribe((data: any) => {
-          console.log(data);
           if (data.status === "00") {
             this.display = false;
             Swal.fire(
@@ -136,7 +125,6 @@ export class CompanyManagementComponent implements OnInit {
               'Company Details Inserted successfully!',
               'success'
             );
-            console.log(data.statusMessage);
             this.getCompanyList();
           } else {
             this.errorMessage = data.statusMessage;
@@ -156,7 +144,6 @@ export class CompanyManagementComponent implements OnInit {
         let modifiedBy = this.userName;
         let companyId = this.id;
         this.api.updateCompany({ ...data, modifiedBy, companyId }).subscribe((data: any) => {
-          console.log(data);
           if (data.status === "00") {
             this.display = false;
             Swal.fire(
@@ -164,7 +151,6 @@ export class CompanyManagementComponent implements OnInit {
               'Company Details Updated successfully!',
               'success'
             );
-            console.log(data.statusMessage);
             this.getCompanyList();
           } else {
             this.errorMessage = data.statusMessage;
@@ -186,10 +172,12 @@ export class CompanyManagementComponent implements OnInit {
 
 
   vewcompanyContact(id){
-    console.log(id);
     this.router.navigate(['/company-contact',id]);
   }
 
+  viewComapny(id){
+    this.router.navigate(['/company-details-view',id]);
+  }
 
   logout() {
     localStorage.removeItem('token');
