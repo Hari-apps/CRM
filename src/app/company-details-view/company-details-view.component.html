@@ -20,11 +20,11 @@
 <div class="container mt-5">
   <div class="card mb-3">
     <div class="card-body company-view">
-      <div> <b> <i class="fas fa-building"></i>Company Name:</b> Girmiti Software</div>
-      <div> <b> <i class="fas fa-globe-africa"></i> Region:</b> India</div>
-      <div> <b> <i class="fas fa-map-marker-alt"></i> Location:</b> Bengaluru</div>
-      <div> <b><i class="fas fa-ruler-vertical"></i> Vertical:</b> Payments</div>
-      <div> <b> <i class="fas fa-user-tie"></i> Account Holder:</b> Mahirat</div>
+      <div> <b> <i class="fas fa-building"></i>Company Name:</b> {{companyDetails.companyName}}</div>
+      <div> <b> <i class="fas fa-globe-africa"></i> Region:</b>  {{companyDetails.regionName}}</div>
+      <div> <b> <i class="fas fa-map-marker-alt"></i> Location:</b>  {{companyDetails.location}}</div>
+      <div> <b><i class="fas fa-ruler-vertical"></i> Vertical:</b>  {{companyDetails.verticalName}}</div>
+      <div> <b> <i class="fas fa-user-tie"></i> Account Holder:</b>  {{companyDetails.accountHolder}}</div>
 
 
     </div>
@@ -35,11 +35,15 @@
         Company Details View
       </div>
       <div class="list-button">
+        <div class="list-search">
+          <input type="text" name=""  placeholder="Global Search"
+            (input)="contactList.filterGlobal($event.target.value, 'contains')">
+        </div>
         <button (click)="addNewComment()">Add New Comment</button>
       </div>
     </div>
     <div class="list-body p-3">
-      <p-table #dt [columns]="cols" [value]="data">
+      <p-table #contactList [columns]="cols" [value]="data" [showLoader]="true" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns">
@@ -63,7 +67,7 @@
         </ng-template>
       </p-table>
       <div class="count-container">
-        Total Count: <b>{{dt.totalRecords}}</b>
+        Total Count: <b>{{contactList.totalRecords}}</b>
       </div>
     </div>
   </div>
@@ -76,15 +80,15 @@
 </footer>
 <p-dialog header="Add New Comment" [(visible)]="displayAddComment" modal='true' [style]="{width: '480px'}"
   [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">
-  <form action="" class="modal-form" #statusForm="ngForm" (ngSubmit)="userStatus(statusForm.value)">
+  <form action="" class="modal-form" #statusForm="ngForm" (ngSubmit)="creatComment(statusForm.value)">
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Comment</label>
-        <textarea name="comment" id="" cols="30" rows="3" required></textarea>
+        <textarea name="comment" id="" cols="30" rows="3" [(ngModel)]="newCommentData.comment" required></textarea>
       </div>
       <div class="col-md-6">
         <label for="" class="required">Status</label>
-        <select name="status" id="" required>
+        <select name="status" id="" required [(ngModel)]="newCommentData.status">
             <option value="new">New</option>
             <option value="dbCreate">DB Create</option>
           <option value="cold">Cold</option>
@@ -96,7 +100,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-md-12 text-right">
-        <button class="save" type="submit">Save</button>
+        <button class="save" [disabled]='statusForm.invalid' type="submit">Save</button>
       </div>
     </div>
   </form>

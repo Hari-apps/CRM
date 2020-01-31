@@ -95,9 +95,9 @@ export class AdminComponent implements OnInit {
     this.dailogTitle = 'Edit user';
     console.log(data);
     this.modalWindowData = data;
-    
+    this.modalWindowData.country = +data.country;
     // this.id = data.userId;
-   
+
     // this.userList.filter(data => {
     //   if (data.userId === id) {
     //     this.modalWindowData = data;
@@ -109,7 +109,6 @@ export class AdminComponent implements OnInit {
   }
 
   showStatusModel(data) {
-
     console.log(data);
     this.displayStatusModal = true;
     this.dataToStatus = {
@@ -127,7 +126,7 @@ export class AdminComponent implements OnInit {
         this.getUserList();
         Swal.fire(
           'Success!',
-          'New User Created successfully!',
+          'Status has been Updated successfully!',
           'success'
         );
         this.displayStatusModal = false;
@@ -154,16 +153,40 @@ export class AdminComponent implements OnInit {
               'New User Created successfully!',
               'success'
             );
+
+            this.getUserList();
           } else {
             this.errorMessage = data.statusMessage;
           }
         });
       } else {
-        this.api.updateUser(this.form.control.value, this.id).subscribe(data => console.log(data));
+        this.api.updateUser(this.form.control.value, this.id).subscribe((data: any) => {
+          console.log(data);
+          if (data.status === '0') {
+            this.getUserList();
+            this.display = false;
+            Swal.fire(
+              'Success!',
+              'User Updated successfully!',
+              'success'
+            );
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: data.statusMessage,
+              icon: 'error',
+              confirmButtonText: 'Try Again'
+            })
+          }
+        });
       }
     }
   }
 
 
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 
 }

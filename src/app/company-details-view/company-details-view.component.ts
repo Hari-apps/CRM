@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ApiService } from '../api.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-company-details-view',
   templateUrl: './company-details-view.component.html',
@@ -7,24 +9,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyDetailsViewComponent implements OnInit {
   userName: string;
+  companyDetails: any = {};
   displayAddComment: boolean = false;
   cols: any;
-
-  data: any[] = [
-    { comment: 'DB Created', addedBy: 'Rohit', time: new Date().toLocaleDateString(), status: 'DB Create' },
-    { comment: 'Activated to New', addedBy: 'Kohli', time: new Date().toLocaleDateString(), status: 'New' },
-  { comment: 'Changed to Cold!', addedBy: 'Rohit', time: new Date().toLocaleDateString(), status: 'Cold' },
-  { comment: 'Keep Getting Warmed', addedBy: 'Bumrah', time: new Date().toLocaleDateString(), status: 'Warm' },
-  { comment: 'Deal Getting Heated!', addedBy: 'Shami', time: new Date().toLocaleDateString(), status: 'Hot' }];
-  constructor() { }
+  newCommentData: any = {};
+  companyId: number;
+  data: any[];
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    // localStorage.getItem('userName');
-    this.userName = 'Gamma';
-
-    this.cols = [{ field: 'comment', header: 'Comment' }, { field: 'addedBy', header: 'Added By' }, { field: 'time', header: 'Time' }, { field: 'status', header: 'Status' },]
+    this.companyId = 4;
+    this.getCompanyDetails()
+    this.getCompanyList();
+    this.userName = localStorage.getItem('userName');
+    this.cols = [{ field: 'comments', header: 'Comment' }, { field: 'createdBy', header: 'Created By' }, { field: 'createDate', header: 'Time' }, { field: 'status', header: 'Status' },]
   }
 
+  getCompanyList() {
+    this.api.getCompanyCommentList().subscribe((data: any) => {
+      this.data = data.companyInteractionRequests;
+
+      console.log(data);
+    }, (error: HttpErrorResponse) => {
+      console.log(error)
+    })
+  }
+  creatComment(data) {
+    this.addNewComment = data;
+
+    this.addNewComment = { ...data, companyId: this.companyId, createdBy: this.userName };
+    this.api.createComment(this.addNewComment).subscribe((data: any) => {
+      if (data.status = "00") {
+        this.displayAddComment = false;
+        Swal.fire(
+          'Success!',
+          'Comment Added successfully!',
+          'success'
+        );
+      }else{
+        Swal.fire({
+          title: 'Error!',
+          text: data.statusMessage,
+          icon: 'error',
+          confirmButtonText: 'Try Again'
+        })
+      }
+    })
+  }
+
+
+  getCompanyDetails() {
+    this.api.getCompanyData(this.companyId).subscribe((data: any) => {
+      this.companyDetails = data.customerRequest[0];
+      console.log(this.companyDetails);
+    })
+  }
   addNewComment() {
     this.displayAddComment = true;
   }
