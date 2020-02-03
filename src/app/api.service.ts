@@ -128,4 +128,8 @@ export class ApiService {
     return this.http.post('http://192.168.2.217:9083/core-service/crm/core/1/0/searchCompanyInteractions', {"companyId":id});
   }
 
+  getAllRoleList(){
+    return this.http.post(`${this.baseURL}/getRoles`, {});
+  }
+
 }

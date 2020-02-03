@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
 import { AdminFormComponent } from './admin-form/admin-form.component';
+import { RolesComponent } from './roles/roles.component';
 
 
 const routes: Routes = [
@@ -39,8 +40,7 @@ const routes: Routes = [
     path:'company-contact/:id',
     component: CompanyContactComponent,
   },
-  {
-    
+  {   
     path: 'admin-form',
     component: AdminFormComponent
   },
@@ -51,6 +51,10 @@ const routes: Routes = [
   {
     path:'company-details-view/:id',
     component: CompanyDetailsViewComponent
+  },
+  {
+    path: 'roles',
+    component: RolesComponent,
   },
   {
     path: '**',

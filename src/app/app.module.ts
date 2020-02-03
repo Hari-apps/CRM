@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
 import { AdminFormComponent } from './admin-form/admin-form.component';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminFormComponent } from './admin-form/admin-form.component';
     HomeComponent,
     CompanyManagementComponent,
     CompanyContactComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
