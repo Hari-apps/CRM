@@ -11,6 +11,7 @@ import { CompanyContactComponent } from './company-contact/company-contact.compo
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RolesComponent } from './roles/roles.component';
 
 
 const routes: Routes = [
@@ -41,8 +42,9 @@ const routes: Routes = [
     path: 'company-contact/:id',
     component: CompanyContactComponent,
   },
-  {
+   
 
+  {   
     path: 'admin-form',
     component: AdminFormComponent
   },
@@ -57,6 +59,11 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent
+  },
+  {
+   
+    path: 'roles',
+    component: RolesComponent,
   },
   {
     path: 'reset-password',

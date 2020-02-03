@@ -141,4 +141,8 @@ export class ApiService {
     return this.http.post(`${this.baseURL}/forgotPassword`, data)
   }
 
+  getAllRoleList(){
+    return this.http.post(`${this.baseURL}/getRoles`, {});
+  }
+
 }

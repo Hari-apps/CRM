@@ -26,6 +26,7 @@ import { CompanyContactComponent } from './company-contact/company-contact.compo
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CompanyContactComponent,
     AdminFormComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
