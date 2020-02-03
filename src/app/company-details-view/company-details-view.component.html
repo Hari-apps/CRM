@@ -1,21 +1,4 @@
-<!-- <app-loader></app-loader> -->
-
-<header>
-  <div class="logo-container">
-    <img src="assets/images/chatak_logo.jpg" alt="" width="130px">
-  </div>
-  <div class="user-container dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-    <div class="user-name ">
-      {{userName.toUpperCase()}}
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Settings</a>
-        <a class="dropdown-item" href="#"><i class="far fa-user-circle mr-2"></i>Profile</a>
-        <a class="dropdown-item" href="#" (click)="logout()"> <i class="fas fa-power-off mr-2"></i>Logout</a>
-      </div>
-    </div>
-  </div>
-</header>
+<app-header></app-header>
 
 <div class="container mt-5">
   <div class="card mb-3">
@@ -72,12 +55,7 @@
     </div>
   </div>
 </div>
-<footer>
-  <div class="footer-text">
-    Copyright © 2019-2020. Chatak All
-    Rights Reserved.
-  </div>
-</footer>
+<app-footer></app-footer>
 <p-dialog header="Add New Comment" [(visible)]="displayAddComment" modal='true' [style]="{width: '480px'}"
   [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">
   <form action="" class="modal-form" #statusForm="ngForm" (ngSubmit)="creatComment(statusForm.value)">

@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
 import { AdminFormComponent } from './admin-form/admin-form.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -36,11 +38,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'company-contact/:id',
+    path: 'company-contact/:id',
     component: CompanyContactComponent,
   },
   {
-    
+
     path: 'admin-form',
     component: AdminFormComponent
   },
@@ -49,8 +51,16 @@ const routes: Routes = [
     component: AdminFormComponent
   },
   {
-    path:'company-details-view/:id',
+    path: 'company-details-view/:id',
     component: CompanyDetailsViewComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
   },
   {
     path: '**',

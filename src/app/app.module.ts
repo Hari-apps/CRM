@@ -24,6 +24,8 @@ import { HomeComponent } from './home/home.component';
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
 import { AdminFormComponent } from './admin-form/admin-form.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AdminFormComponent } from './admin-form/admin-form.component';
     HomeComponent,
     CompanyManagementComponent,
     CompanyContactComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -6,25 +6,24 @@
   font-family: 'Open Sans', sans-serif;
   color: #5C5C5C;
 }
-
-html,
-body {
-  height: 100%;
+.brand-color{
+  color: #3192AF!important;
 }
-
 body {
   background: #ecf0f1;
   position: relative;
-
+  min-height: 100vh;
 }
 
 footer {
   position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
   background: #fff;
   padding: 8px 10px;
   text-align: center;
-  width: 100%;
+  margin-top: 20px;
 }
 
 .required::after {
@@ -265,7 +264,8 @@ header {
   padding-left: 40px;
   font-size: 14px;
 }
-.list-button button.user-list-btn:before{
+
+.list-button button.user-list-btn:before {
   font-family: "Font Awesome 5 Free";
   content: "\f03a";
   font-weight: 400;
@@ -345,12 +345,12 @@ header {
   color: #c0392b;
 }
 
-.action-icons i.fa-comment:hover{
-  color:#8e44ad;
+.action-icons i.fa-comment:hover {
+  color: #8e44ad;
 }
 
-.action-icons i.fa-address-card:hover{
-  color:#ED4C67;
+.action-icons i.fa-address-card:hover {
+  color: #ED4C67;
 }
 
 
@@ -467,7 +467,7 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
 
 
 .modal-form textarea {
-  width: 100%;  
+  width: 100%;
 }
 
 .modal-form input:focus,
@@ -514,7 +514,7 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
 /* #########################################MASTER FORM START########################################################### */
 
 .master-form-card {
-  
+
   border: 1px solid #cfcfcf;
   border-radius: 3px;
   margin: 5px;
@@ -522,16 +522,16 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
   margin-bottom: 15px;
 }
 
-.master-form-header{
+.master-form-header {
   font-weight: bold;
-  padding-bottom: 10px; 
+  padding-bottom: 10px;
 }
 
-.master-form-card .row{
+.master-form-card .row {
   margin-bottom: 5px;
 }
 
-.list-button i{
+.list-button i {
   padding: 6px 10px;
   margin-left: 5px;
   border-radius: 3px;
@@ -540,24 +540,101 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
   color: #3192AF;
   cursor: pointer;
 }
+
 /* #########################################MASTER FORM START########################################################### */
 
 
 
 
-.company-view{
+.company-view {
   display: flex;
   justify-content: space-between;
 }
 
-.company-view i{
+.company-view i {
   padding-right: 7px;
   color: #3192AF;
 }
 
-.company-view b{
-  color:#3192AF;
+.company-view b {
+  color: #3192AF;
+}
+
+/* ++++++++++++++++++++++++++++++++++FORGOT PASSWORD +++++++++++++++++++++++++++++++++++ */
+.align-items-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.forget-password-contianer{
+    width: 800px;
+  height: 430px; 
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px #7070708a;
+  padding: 10px;
+  overflow: hidden;
+  background: #fff; 
+  display: flex;
+}
+
+.image-container{
+  flex-basis: 60%;
+  height: 100%;
+  
 }
 
 
+.image-container img{ 
+  width: 100%;
+  height: auto;
+  margin-left: 40px; 
+}
 
+
+.pass-form-container{
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.pass-user-input{
+  border-bottom: 1px solid rgb(206, 205, 205);
+  margin-bottom: 30px;
+  margin-top: 30px; 
+  width: 77%;
+  display: inline-block;
+}
+.pass-form-container input{
+  border:none; 
+  padding-left: 40px; 
+  padding-bottom: 5px;
+}
+
+.pass-form-container input:focus , .pass-form-container button{
+  outline: none;
+  border-bottom: 2px solid #46DEBF;
+}
+
+.pass-form-container button {
+  padding: 7px 40px;
+    width: 77%;
+    border-radius: 3px;
+    border: none;
+    background: #46DEBF;
+    color: #fff;
+    box-shadow: 0px 3px 6px #cfcfcf;
+}
+
+.pass-user-input::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  position: absolute;
+  font-size: 24px;
+  margin-top: -5px;
+  color: #707070;
+  margin-left: 5px;
+  content: "\f2bd";
+}

@@ -16,11 +16,11 @@ export class ApiService {
 
   }
 
-  createUser(data) { 
+  createUser(data) {
     return this.http.post(`${this.baseURL}/createUser`, data);
   }
 
-  updateUser(data) { 
+  updateUser(data) {
     return this.http.post(`${this.baseURL}/updateProfile`, data);
 
   }
@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   getUserById(data) {
-    return this.http.post(`${this.baseURL}/getProfile`, data); 
+    return this.http.post(`${this.baseURL}/getProfile`, data);
   }
 
   getRegions() {
@@ -53,59 +53,59 @@ export class ApiService {
     return this.http.get('http://192.168.5.163:9083/core-service/license/core/1/0/getCountryList');
   }
 
-  getStateList(data) { 
+  getStateList(data) {
     return this.http.post('http://192.168.5.163:9083/core-service/license/core/1/0/getStatesByCountryId', data)
   }
 
 
   //Apis for Company and Contact
-  
+
   baseComapnyManagemtURL: string = "http://192.168.5.163:9083/core-service/crm/core/1/0";
 
-  companyList(){
-    return this.http.get(`${this.baseComapnyManagemtURL}/getCompanyslist`); 
+  companyList() {
+    return this.http.get(`${this.baseComapnyManagemtURL}/getCompanyslist`);
   }
-  
-  
-    createCompany(data) {
-      console.log("company Service",data);
-      return this.http.post(`${this.baseComapnyManagemtURL}/createCompany`, data);
-    }
-  
-  
-    updateCompany(data) {
-      console.log("edit company Service",data);
-      return this.http.post(`${this.baseComapnyManagemtURL}/editCompany`, data);
-    }
-  
-  
+
+
+  createCompany(data) {
+    console.log("company Service", data);
+    return this.http.post(`${this.baseComapnyManagemtURL}/createCompany`, data);
+  }
+
+
+  updateCompany(data) {
+    console.log("edit company Service", data);
+    return this.http.post(`${this.baseComapnyManagemtURL}/editCompany`, data);
+  }
+
+
   //API's for Company Contact
-  
-  companyContactList(data){
-    return this.http.post(`${this.baseComapnyManagemtURL}/getCompanyContacts `,data); 
+
+  companyContactList(data) {
+    return this.http.post(`${this.baseComapnyManagemtURL}/getCompanyContacts `, data);
   }
-  
+
   createCompanyContact(data) {
-    console.log("company Service",data);
+    console.log("company Service", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/createCompanyContact`, data);
   }
-  
+
   updateCompanyContact(data) {
-    console.log("edit Contact Service",data);
+    console.log("edit Contact Service", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/editCompanyContact`, data);
   }
 
-  companyDetailView(){
-    return this.http.get(`${this.baseComapnyManagemtURL}/getAllCompanyInteraction`); 
+  companyDetailView() {
+    return this.http.get(`${this.baseComapnyManagemtURL}/getAllCompanyInteraction`);
   }
-  
-  
-  companyContactChangeStatus(data){
-    console.log("change status",data);
+
+
+  companyContactChangeStatus(data) {
+    console.log("change status", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/changeStatus`, data);
   }
 
-  getCityList(data){
+  getCityList(data) {
     return this.http.post('http://192.168.5.163:9083/core-service/license/core/1/0/getCitiesByStateId', data);
   }
   // company Detail View
@@ -115,17 +115,30 @@ export class ApiService {
   }
 
   getCompanyCommentList() {
-    return this.http.get('http://192.168.2.217:9083/core-service/crm/core/1/0/getAllCompanyInteraction');
+    return this.http.get('http://192.168.5.163:9083/core-service/crm/core/1/0/getAllCompanyInteraction');
 
   }
 
-  createComment(data){ 
-        return this.http.post('http://192.168.2.217:9083/core-service/crm/core/1/0/createCompanyInteraction', data);
+  createComment(data) {
+    return this.http.post('http://192.168.5.163:9083/core-service/crm/core/1/0/createCompanyInteraction', data);
   }
 
-  getCompanyInteractionData(id){
-    console.log("companyid",id);
-    return this.http.post('http://192.168.2.217:9083/core-service/crm/core/1/0/searchCompanyInteractions', {"companyId":id});
+  getCompanyInteractionData(id) {
+    console.log("companyid", id);
+    return this.http.post('http://192.168.5.163:9083/core-service/crm/core/1/0/searchCompanyInteractions', { "companyId": id });
+  }
+
+
+  //Account Holder API
+
+  getUsersForAccountHolder() {
+    return this.http.get('http://192.168.2.217:9085/user-service/license/user/1/0/showAccountHolder');
+  }
+
+  //Forgot password
+
+  forgotPassword(data){
+    return this.http.post(`${this.baseURL}/forgotPassword`, data)
   }
 
 }

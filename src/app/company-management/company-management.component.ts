@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { UserModal } from '../modals/user.modal';
 import { HttpErrorResponse } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-company-management',
@@ -30,12 +31,14 @@ export class CompanyManagementComponent implements OnInit {
 
   companyList: any[];
 
+  accountHolderlist: any[];
+
   errorMessage: string = "";
 
   id: number;
 
   statusClass: string = "";
-  
+
   cols: any[] = [
     { field: 'companyName', header: 'Company Name' },
     { field: 'regionName', header: 'Region' },
@@ -55,7 +58,7 @@ export class CompanyManagementComponent implements OnInit {
 
   ngOnInit() {
     this.userName = window.localStorage.getItem('userName');
-
+    this.getAccountHolders();
     //Get Regions
     this.api.getRegions().subscribe(
       (data: any) => {
@@ -76,10 +79,17 @@ export class CompanyManagementComponent implements OnInit {
   getCompanyList() {
     //Get Company List
     this.api.companyList().subscribe((data: any) => {
+      console.log(data);
       this.companyList = data.customerRequest;
     });
   }
 
+  getAccountHolders() {
+    this.api.getUsersForAccountHolder().subscribe((data: any) => {
+     this.accountHolderlist = data.list;
+     console.log(this.accountHolderlist)
+    })
+  }
   //Add new Company
   addNewComapny() {
     this.id = 0;
@@ -105,7 +115,7 @@ export class CompanyManagementComponent implements OnInit {
     })
   }
 
-  
+
   onHideModalWindow() {
     this.display = false;
   }
@@ -115,6 +125,7 @@ export class CompanyManagementComponent implements OnInit {
     if (this.form.control.valid) {
       if (this.id == 0) {
         let data = this.form.control.value;
+        
         let createdBy = this.userName;
         let status = this.modalWindowData.status;
         this.api.createCompany({ ...data, createdBy, status }).subscribe((data: any) => {
@@ -171,12 +182,12 @@ export class CompanyManagementComponent implements OnInit {
   }
 
 
-  vewcompanyContact(id){
-    this.router.navigate(['/company-contact',id]);
+  vewcompanyContact(id) {
+    this.router.navigate(['/company-contact', id]);
   }
 
-  viewComapny(id){
-    this.router.navigate(['/company-details-view',id]);
+  viewComapny(id) {
+    this.router.navigate(['/company-details-view', id]);
   }
 
   logout() {
