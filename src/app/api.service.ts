@@ -145,4 +145,9 @@ export class ApiService {
     return this.http.post(`${this.baseURL}/getRoles`, {});
   }
 
+  resetPassword(data){
+    console.log(data);
+    return this.http.post(`${this.baseURL}/resetPassword`, data)
+  }
+
 }

@@ -2,15 +2,17 @@
 
 <header>
   <div class="logo-container">
-    <img src="assets/images/chatak_logo.jpg" alt="" width="130px">
+    <img (click)="redirectHome()"  src="assets/images/chatak_logo.jpg" alt="" width="130px">
   </div>
   <div class="user-container dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
     aria-expanded="false">
     <div class="user-name ">
       {{userName.toUpperCase()}}
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
-        <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Settings</a>
         <a class="dropdown-item" href="#"><i class="far fa-user-circle mr-2"></i>Profile</a>
+        <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Settings</a>
+        <a *ngIf="roleType==='SUPER_ADMIN'" class="dropdown-item" routerLink="/roles"><i class="fas fa-user-shield"></i> Roles </a>
+
         <a class="dropdown-item" href="#" (click)="logout()"> <i class="fas fa-power-off mr-2"></i>Logout</a>
       </div>
     </div>

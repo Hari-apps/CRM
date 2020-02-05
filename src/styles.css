@@ -185,7 +185,9 @@ header {
 .logo-container {
   margin-left: 50px;
 }
-
+.logo-container img{
+  cursor: pointer;
+}
 .user-container {
   align-self: center;
   margin-right: 80px;
@@ -427,6 +429,9 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
   color: #fff;
 }
 
+body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-slider {
+  background-color: #e84393!important;
+}
 /* ################################## PRIMENG STYLE END###################################################### */
 
 
@@ -638,3 +643,76 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-title,
   margin-left: 5px;
   content: "\f2bd";
 }
+
+.pass-user-input.lock::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  position: absolute;
+  font-size: 24px;
+  margin-top: -10px;
+  color: #707070;
+  margin-left: 5px;
+  content: "\f023";
+}
+
+
+
+/* **************************************ROLES SWITCHES START ********************************************** */
+.roles-container{
+  display: flex;
+  justify-content: space-between;
+}
+.roles-access{  
+  width: 48%; 
+  border-radius: 4px;
+  margin-top: 15px; 
+}
+ 
+.roles-header{
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #cfcfcfcf;
+}
+.roles-body{
+  padding: 10px;
+}
+.roles-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cfcfcf;
+  margin-bottom: 7px;
+  padding-left: 30px;
+}
+
+.roles-item::before{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  position: absolute;
+  font-size: 20px;
+  margin-top: -3px;
+  color: #707070;
+  margin-left: -30px;
+
+}
+
+.roles-item.create::before{
+  content: "\f0fe";
+  color: #2980b9;
+}
+.roles-item.edit::before{
+  content: "\f044";
+  color: #27ae60;
+
+}
+.roles-item.delete::before{
+  content: "\f2ed";
+  color: #c0392b;
+
+}
+.roles-item.view::before{
+  content: "\f06e";
+  color: #8e44ad;
+
+}
+/* **************************************ROLES SWITCHES END ********************************************** */

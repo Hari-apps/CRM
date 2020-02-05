@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import Swal from 'sweetalert2'
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-forgot-password',
@@ -24,6 +26,13 @@ export class ForgotPasswordComponent implements OnInit {
       } else {
         this.errorMessage = data.statusMessage;
       }
+    }, (error: HttpErrorResponse) => {
+      Swal.fire({
+        title: 'Error!',
+        text: error.statusText,
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      })
     })
   }
 

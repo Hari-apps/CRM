@@ -9,18 +9,33 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   userName: string;
   showCompany: boolean = false;
+  roleType: string;
   constructor(private router: Router) {
-      if(localStorage.getItem('roleType') === "SUPER_ADMIN"){
-        this.showCompany = true;
-      }
-   }
+    if (localStorage.getItem('roleType') === "SUPER_ADMIN") {
+      this.showCompany = true;
+    }
+  }
 
   ngOnInit() {
+    this.roleType = localStorage.getItem('roleType');
     this.userName = localStorage.getItem('userName');
   }
 
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  redirectHome() {
+    if (localStorage.getItem('isLoggedIn') === "true") {
+      if (this.roleType === 'SUPER_ADMIN') {
+        this.router.navigate(['/admin'])
+      } else {
+        this.router.navigate(['/company-management'])
+      }
+    } else {
+      this.router.navigate(['/login']);
+    }
+
   }
 }
