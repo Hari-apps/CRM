@@ -1,9 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from '../api.service';
 import { NgForm } from '@angular/forms';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-login',
@@ -14,31 +14,38 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm', { static: false }) form: NgForm;
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) {
+   
+  }
   ngOnInit() {
-    if (localStorage.getItem('token') != null) {
+    if (localStorage.getItem('roleType') === "SUPER_ADMIN") {
       this.router.navigate(['/admin']);
+    } else if (localStorage.getItem('roleType') === "SALES_MANAGER" || localStorage.getItem('roleType') === "SALES_EXECUTIVE") {
+      this.router.navigate(['/company-management']);
     }
   }
 
-  onSubmit(data) { 
+  onSubmit(data) {
     this.api.login(data)
       .subscribe(
         (data: any) => {
+          console.log(data);
           if (data.status === "0") {
-            if(data.userType === 'SUPER_ADMIN'){
+            if (data.userType === 'SUPER_ADMIN') {
               this.router.navigate(['/admin']);
-            }else{
+            } else {
               this.router.navigate(['/company-management']);
-            }           
+            }
             Swal.fire(
               'Success!',
               'You are logged in successfully!',
               'success'
-            ); 
+            );
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userName', this.form.value.userName);
             localStorage.setItem('roleType', data.userType);
+            localStorage.setItem('userId', data.userId);
+
           } else {
             Swal.fire({
               title: 'Error!',

@@ -29,6 +29,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { RolesComponent } from './roles/roles.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { SettingsComponent } from './settings/settings.component';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     AdminFormComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    RolesComponent
+    RolesComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     TooltipModule,
     DialogModule,
     CheckboxModule,
-    InputSwitchModule
+    InputSwitchModule,
+    PasswordModule
 
   ],
   providers: [

@@ -1,5 +1,5 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -34,21 +34,32 @@ export class ApiService {
     return this.http.get(`${this.baseURL}/findAllUsers`);
   }
 
-  getUserById(data) {
-    return this.http.post(`${this.baseURL}/getProfile`, data);
-  }
+  // getUserById(data) {
+  //   return this.http.post(`${this.baseURL}/getProfile`, data);
+  // }
 
+  getUserById(data) {
+    return this.http.post('http://192.168.5.163:9085/user-service/license/user/1/0/getUserById', data);
+  }
   getRegions() {
     return this.http.get('http://192.168.5.163:9083/core-service/crm/core/1/0/getRegions');
   }
+
 
   getVerticals() {
     return this.http.get('http://192.168.5.163:9083/core-service/crm/core/1/0/getVerticals');
   }
 
   getRoles() {
-    return this.http.get('http://192.168.5.163:9085/user-service/license/user/1/0/getRolesToMap');
+    return this.http.get('http://192.168.5.163:9085/user-service/license/user/1/0/getRoleType');
+    // return this.http.post('http://192.168.5.163:9085/user-service/license/user/1/0/getRoles');
+
   }
+
+  getActiveRoles(data) {
+    return this.http.post('http://192.168.5.163:9085/user-service/license/user/1/0/getActiveRoles', data);
+  }
+
   getCountryList() {
     return this.http.get('http://192.168.5.163:9083/core-service/license/core/1/0/getCountryList');
   }
@@ -68,13 +79,11 @@ export class ApiService {
 
 
   createCompany(data) {
-    console.log("company Service", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/createCompany`, data);
   }
 
 
   updateCompany(data) {
-    console.log("edit company Service", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/editCompany`, data);
   }
 
@@ -86,12 +95,10 @@ export class ApiService {
   }
 
   createCompanyContact(data) {
-    console.log("company Service", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/createCompanyContact`, data);
   }
 
   updateCompanyContact(data) {
-    console.log("edit Contact Service", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/editCompanyContact`, data);
   }
 
@@ -101,7 +108,6 @@ export class ApiService {
 
 
   companyContactChangeStatus(data) {
-    console.log("change status", data);
     return this.http.post(`${this.baseComapnyManagemtURL}/changeStatus`, data);
   }
 
@@ -124,7 +130,6 @@ export class ApiService {
   }
 
   getCompanyInteractionData(id) {
-    console.log("companyid", id);
     return this.http.post('http://192.168.5.163:9083/core-service/crm/core/1/0/searchCompanyInteractions', { "companyId": id });
   }
 
@@ -137,17 +142,20 @@ export class ApiService {
 
   //Forgot password
 
-  forgotPassword(data){
+  forgotPassword(data) {
     return this.http.post(`${this.baseURL}/forgotPassword`, data)
   }
 
-  getAllRoleList(){
+  getAllRoleList() {
     return this.http.post(`${this.baseURL}/getRoles`, {});
   }
 
-  resetPassword(data){
-    console.log(data);
+  resetPassword(data) {
     return this.http.post(`${this.baseURL}/resetPassword`, data)
+  }
+
+  changePassword(data) {
+    return this.http.post(`${this.baseURL}/changePassword`, data)
   }
 
 }

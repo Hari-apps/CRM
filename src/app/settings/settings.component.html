@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="container mt-5">
+  <div class="list-container">
+    <div class="list-header">
+      <div class="list-title-container">
+        Settings
+      </div>
+
+    </div>
+
+    <div class="list-body p-3">
+      <form class="modal-form master-form" #masterForm="ngForm" novalidate (ngSubmit)="onSubmit(masterForm.value)">
+        <div class="master-form-card">
+          <div class="master-form-header">
+            Change Password
+          </div>
+          <div class="row ">
+
+            <div class="col-md-3">
+              <label for="" class="required">Curent Password</label>
+              <input type="password" name="currentPassword" ngModel minLength="3" required>
+            </div>
+            <div class="col-md-3">
+              <label for="" class="required">Change Password</label>
+              <input type="password" name="newPassword" ngModel required>
+            </div>
+            <div class="col-md-3">
+              <label for="" class="required">Confirm Password</label>
+              <input type="password" name="confirmPassword" ngModel required>
+            </div>
+            <!-- <div class="col-md-3">
+                <div class="list-group"> 
+                    <div class="list-group-item">It should contain</div>
+                    <div class="list-group-item">It should contain</div>
+                    <div class="list-group-item">It should contain</div>
+                    <div class="list-group-item">It should contain</div>
+                    <div class="list-group-item">It should contain</div>
+                    <div class="list-group-item">It should contain</div>
+                </div>
+            </div> -->
+          </div>
+        </div>
+
+
+
+
+        <div class="row px-1">
+          <div class="col-md-9  "><button *ngIf="errorMessage.length!=0" type="button"
+              class="btn btn-danger">{{errorMessage}}</button></div>
+          <div class="col-md-3 text-right">
+            <button class="cancel" type="reset">Reset</button> <button type="submit" [disabled]="masterForm.invalid"
+              class="save">Save</button>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

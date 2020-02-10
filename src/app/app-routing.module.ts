@@ -12,6 +12,7 @@ import { AdminFormComponent } from './admin-form/admin-form.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RolesComponent } from './roles/roles.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
@@ -42,9 +43,9 @@ const routes: Routes = [
     path: 'company-contact/:id',
     component: CompanyContactComponent,
   },
-   
 
-  {   
+
+  {
     path: 'admin-form',
     component: AdminFormComponent
   },
@@ -61,13 +62,17 @@ const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
-   
+
     path: 'roles',
     component: RolesComponent,
   },
   {
     path: 'reset-password',
     component: ResetPasswordComponent
+  }, 
+  {
+    path: 'settings',
+    component: SettingsComponent
   },
   {
     path: '**',

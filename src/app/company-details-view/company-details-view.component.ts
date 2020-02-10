@@ -63,8 +63,7 @@ export class CompanyDetailsViewComponent implements OnInit {
 
   getCompanyDetails() {
     this.api.getCompanyData(this.companyId).subscribe((data: any) => {
-      this.companyDetails = data.customerRequest[0];
-      console.log(this.companyDetails);
+      this.companyDetails = data.customerRequest[0]; 
     })
   }
   addNewComment() {

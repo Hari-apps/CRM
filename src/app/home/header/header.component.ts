@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
   userName: string;
   showCompany: boolean = false;
   roleType: string;
+  userId: any;
   constructor(private router: Router) {
     if (localStorage.getItem('roleType') === "SUPER_ADMIN") {
       this.showCompany = true;
@@ -19,6 +20,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.roleType = localStorage.getItem('roleType');
     this.userName = localStorage.getItem('userName');
+    this.userId = localStorage.getItem('userId');
+
   }
 
   logout() {
@@ -36,6 +39,16 @@ export class HeaderComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+
+  }
+
+  gotoProfile() {
+    this.router.navigate(['/admin-form', this.userId]);
+
+  }
+
+  gotoSettings() {
+    this.router.navigate(['/settings']);
 
   }
 }

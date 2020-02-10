@@ -48,35 +48,17 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.userName = window.localStorage.getItem('userName');
-    this.getUserList();
-    this.getRoles();
-    this.getRegions();
+    this.getUserList(); 
 
   }
 
   getUserList() {
     this.api.userList().subscribe((data: any) => {
-      this.userList = data.userList; 
-      console.log(this.userList);
+      this.userList = data.userList;  
     });
   }
 
-  getRoles() {
-    this.api.getRoles().subscribe(
-      (data: any) => { 
-        this.userRoles = data.roleList;
-      }
-    );
-  }
-
-  getRegions() {
-    this.api.getRegions().subscribe(
-      (data: any) => { 
-        this.regions = data.regionRequest;
-      }
-    );
-  }
-
+ 
   addNewUser() {
     this.router.navigate(['/admin-form']);
   }

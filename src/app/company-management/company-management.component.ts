@@ -78,8 +78,7 @@ export class CompanyManagementComponent implements OnInit {
 
   getCompanyList() {
     //Get Company List
-    this.api.companyList().subscribe((data: any) => {
-      console.log(data);
+    this.api.companyList().subscribe((data: any) => { 
       this.companyList = data.customerRequest;
     });
   }
