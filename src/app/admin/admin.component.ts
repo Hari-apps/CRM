@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
   cols: any[] = [
     { field: 'userId', header: 'User ID ' },
     { field: 'userName', header: 'Name' },
-    { field: 'userRoleName', header: 'Role' },
+    { field: 'roleName', header: 'Role' },
     { field: 'countryName', header: 'Region' }
 
   ]
@@ -67,12 +67,13 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/admin-form', id]);
   }
 
-  showStatusModel(data) { 
+  showStatusModel(data) {
+    console.log(data); 
     this.displayStatusModal = true;
     this.dataToStatus = {
       entityId: data.userId,
       status: data.status,
-      entityType: data.userRoleName,
+      roleType: data.userType,
       reason: ''
     }
   }

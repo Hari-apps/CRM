@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.roleType = localStorage.getItem('roleType');
     this.userName = localStorage.getItem('userName');
-    this.userId = localStorage.getItem('userId');
-
+    this.userId = localStorage.getItem('userId'); 
+    
   }
 
   logout() {
@@ -51,4 +51,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/settings']);
 
   }
+
+  
 }

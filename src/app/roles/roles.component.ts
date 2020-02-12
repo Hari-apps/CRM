@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2'
-import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import { UserModal } from '../modals/user.modal';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ApiService } from '../api.service';
+import { roleModel } from '../modals/role.model';
 
 @Component({
   selector: 'app-roles',
@@ -19,7 +17,7 @@ export class RolesComponent implements OnInit {
 
   dailogTitle: string;
 
-  modalWindowData: any = {};
+  modalWindowData: any={};
 
   userName: string;
 
@@ -31,6 +29,8 @@ export class RolesComponent implements OnInit {
 
   statusClass: string = "";
   
+  features: any;
+
   cols: any[] = [
     { field: 'roleType', header: 'Role Type' },
     { field: 'roleName', header: 'Role Name' },
@@ -39,19 +39,34 @@ export class RolesComponent implements OnInit {
   ];
 
   statusForNew: boolean;
+  userRoles: any=[];
 
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.userName = window.localStorage.getItem('userName');
+    this.getRoles();
     this.getRolesList();
+ 
   }
 
+  getRoles() {
+    this.api.getRoles().subscribe(
+      (data: any) => {
+        if (data.status === "0") {
+          this.userRoles = data.roleTypes; 
+
+        } else {
+          this.errorMessage = data.statusMessage;
+        }
+      }
+    );
+  }
+  
   getRolesList() {
     //Get Company List
     this.api.getAllRoleList().subscribe((data: any) => {
-      this.RoleList = data.roleList;
-      console.log("RoleList",this.RoleList);
+      this.RoleList = data.roleList; 
     });
   }
 
@@ -59,7 +74,7 @@ export class RolesComponent implements OnInit {
   addNewRole() {
     this.id = 0;
     this.errorMessage = "";
-    this.modalWindowData = {};
+    // this.modalWindowData={};
     this.display = true;
     this.dailogTitle = 'Add New Role';
     this.statusForNew = true; //modalWindowData.status
@@ -83,17 +98,18 @@ export class RolesComponent implements OnInit {
     this.display = false;
   }
 
-  onSubmit() {
-    this.errorMessage = "";
-    if (this.form.control.valid) {
-      if (this.id == 0) {
+  onSubmit(data) {
+    console.log(data);
+    // this.errorMessage = "";
+    // if (this.form.control.valid) {
+    //   if (this.id == 0) {
         
 
-      } else {
+    //   } else {
 
 
-      }
-    }
+    //   }
+    // }
   }
 
   logout() {

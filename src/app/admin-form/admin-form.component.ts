@@ -46,13 +46,13 @@ export class AdminFormComponent implements OnInit {
 
   getUser() {
     let data = { userId: this.userId }
-    this.api.getUserById(data).subscribe((data: any) => {
-      console.log("user Data", data);
+    this.api.getUserById(data).subscribe((data: any) => { 
       if (data.status === "0") {
         this.formData = data.userList[0];
         this.formData.country = +data.userList[0].country;
         this.formData.state = +data.userList[0].state;
         this.formData.city = +data.userList[0].city;
+        this.setStateValues();
         this.setCityValues();
         this.setRoleNames();
 
@@ -74,11 +74,10 @@ export class AdminFormComponent implements OnInit {
 
   setRoleNames() {
     this.activeRoles = [];
-    var roleType = { roleType: this.formData.roleType }; 
+    var roleType = { roleType: this.formData.roleType };
     this.api.getActiveRoles(roleType).subscribe((data: any) => {
       if (data.status === "0") {
-        this.activeRoles = data.roleList;
-        console.log("active roles", this.activeRoles)
+        this.activeRoles = data.roleList; 
       }
     })
   }
@@ -117,8 +116,7 @@ export class AdminFormComponent implements OnInit {
     })
   }
 
-  onSubmit(data, action) {
-    console.log("submit",data);
+  onSubmit(data, action) { 
     this.errorMessage = "";
     if (data) {
       if (this.userId == 0) {

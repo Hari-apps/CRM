@@ -8,7 +8,7 @@
       </div>
       <div class="list-button">
         <div class="list-search">
-          <input type="text" name="" id="" placeholder="Global Search"
+          <input type="text" name="" placeholder="Global Search"
             (input)="dt.filterGlobal($event.target.value, 'contains')">
         </div>
 
@@ -64,65 +64,75 @@
 
 <p-dialog [header]="dailogTitle" [(visible)]="display" modal='true' [style]="{width: '620px'}"
   [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">
-  <form class="modal-form" #modalForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <form class="modal-form" #modalForm="ngForm" novalidate (ngSubmit)="onSubmit(modalForm.value)">
     <div class="row">
       <div class="col-md-6">
-        <label for="" class="required">Role Name</label>
-        <input type="text" name="roleName" id="" [(ngModel)]="modalWindowData.roleName" minLength="3" required>
+        <label for="" class="required">User Type</label>
+        <select name="roleType" [(ngModel)]="modalWindowData.roleType">
+          <option *ngFor="let role of userRoles" [ngValue]="role.roleType">{{role.roleType}}</option>
+        </select>
       </div>
       <div class="col-md-6">
-        <label for="" class="required">Role Description</label>
-        <input type="text" name="description" id="" [(ngModel)]="modalWindowData.description" minLength="3" required>
+        <label for="" class="required">Role Name</label>
+        <input type="text" name="roleName" [(ngModel)]="modalWindowData.roleName" minLength="3" required>
       </div>
     </div>
-    <div class="roles-container">
-      <div class="roles-access">
-        <div class="roles-header">
-          User Management
-        </div>
-        <div class="roles-body">
-          <div class="roles-item create">
-            <label for="">User Create</label>
-            <p-inputSwitch></p-inputSwitch>
-          </div>
-          <div class="roles-item edit">
-            <label for="">User Edit</label>
-            <p-inputSwitch></p-inputSwitch>
-          </div>
-          <div class="roles-item delete">
-            <label for="">User Delete</label>
-            <p-inputSwitch></p-inputSwitch>
-          </div>
-          <div class="roles-item view">
-            <label for="">User View</label>
-            <p-inputSwitch></p-inputSwitch>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="" class="required">Role Description</label>
+        <textarea type="text" name="description" [(ngModel)]="modalWindowData.description" minLength="3"
+          required></textarea>
       </div>
-      <div class="roles-access">
+    </div>
+    <fieldset ngModelGroup="features">
+      <div class="roles-container">
+        <div class="roles-access">
+          <div class="roles-header">
+            User Management
+          </div>
+          <div class="roles-body">
+            <div class="roles-item create">
+              <label for="">User Create</label>
+              <p-inputSwitch name="UserCreate" [(ngModel)]="modalWindowData.UserCreate"></p-inputSwitch>
+            </div>
+            <div class="roles-item edit">
+              <label for="">User Edit</label>
+              <p-inputSwitch name="UserEdit" [(ngModel)]="modalWindowData.UserEdit"></p-inputSwitch>
+            </div>
+            <div class="roles-item delete">
+              <label for="">User Delete</label>
+              <p-inputSwitch name="UserDelete" [(ngModel)]="modalWindowData.UserDelete"></p-inputSwitch>
+            </div>
+            <div class="roles-item view">
+              <label for="">User View</label>
+              <p-inputSwitch name="1007" [(ngModel)]="modalWindowData.UserView"></p-inputSwitch>
+            </div>
+          </div>
+        </div>
+        <div class="roles-access">
         <div class="roles-header">
           Company Management
         </div>
         <div class="roles-body">
           <div class="roles-item create">
             <label for="">Company Create</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item edit">
             <label for="">Company Edit</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item delete">
             <label for="">Company Delete</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item view">
             <label for="">Company View</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
         </div>
       </div>
-  
+
     </div>
     <div class="roles-container">
       <div class="roles-access">
@@ -132,19 +142,19 @@
         <div class="roles-body">
           <div class="roles-item create">
             <label for="">Company Contact Create</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item edit">
             <label for="">Company Contact Edit</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item delete">
             <label for="">Company Contact Delete</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item view">
             <label for="">Company Contact View</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
         </div>
       </div>
@@ -155,24 +165,25 @@
         <div class="roles-body">
           <div class="roles-item create">
             <label for="">Roles Create</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item edit">
             <label for="">Roles Edit</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item delete">
             <label for="">Roles Delete</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
           <div class="roles-item view">
             <label for="">Roles View</label>
-            <p-inputSwitch></p-inputSwitch>
+            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
           </div>
         </div>
       </div>
-  
-    </div>
+
+      </div>
+    </fieldset>
     <div class="row mt-3">
       <div class="col-md-6  ">
         <button *ngIf="errorMessage.length!=0" type="button" class="btn btn-danger">{{errorMessage}}</button>
@@ -209,7 +220,7 @@
          </div>
          <div class="col-md-6">
            <label for="">reason</label>
-           <textarea name="reason" id="" cols=""  rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
+           <textarea name="reason"  cols=""  rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
          </div>
 
        </div>
@@ -220,4 +231,3 @@
    
    </form>
   </p-dialog> -->
- 
