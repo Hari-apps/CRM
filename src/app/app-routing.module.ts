@@ -36,12 +36,12 @@ const routes: Routes = [
   },
   {
     path: 'company-management',
-    component: CompanyManagementComponent,
-    canActivate: [AuthGuard]
+    component: CompanyManagementComponent, 
+
   },
   {
     path: 'company-contact/:id',
-    component: CompanyContactComponent,
+    component: CompanyContactComponent 
   },
 
 

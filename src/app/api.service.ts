@@ -150,6 +150,15 @@ export class ApiService {
     return this.http.post(`${this.baseURL}/getRoles`, {});
   }
 
+  createRole(data){
+    return this.http.post(`${this.baseURL}/createRole`, data); 
+  }
+
+  getFeatureList(){
+    let roleName = localStorage.getItem('roleType');
+    return this.http.post(`${this.baseURL}/getFeatures`, {roleType:roleName}); 
+
+  }
   resetPassword(data) {
     return this.http.post(`${this.baseURL}/resetPassword`, data)
   }

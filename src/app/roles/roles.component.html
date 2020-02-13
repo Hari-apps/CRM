@@ -1,3 +1,5 @@
+<app-loader></app-loader>
+
 <app-header></app-header>
 
 <div class="container mt-5">
@@ -12,7 +14,7 @@
             (input)="dt.filterGlobal($event.target.value, 'contains')">
         </div>
 
-        <button (click)="addNewRole()">Add New Role</button>
+        <button (click)="addNewRole()" [hidden]="!featureList.RoleCreate">Add New Role</button>
       </div>
     </div>
 
@@ -37,9 +39,9 @@
               {{rowData[col.field]}}
             </td>
             <td class="action-icons">
-              <i class="fas fa-pen" (click)="editRole(rowData.roleId)" pTooltip="Edit Role" tooltipPosition="top"></i>
+              <i class="fas fa-pen" (click)="editRole(rowData.roleId)" pTooltip="Edit Role" tooltipPosition="top" [hidden]="!featureList.RoleEdit"></i>
               <i [ngClass]="rowData.status==='Active'?'fas fa-circle text-success':' fas fa-circle text-muted'"
-                (click)="showStatusModel(rowData)" pTooltip="Contact Status" tooltipPosition="top"></i>
+                (click)="showStatusModel(rowData)" pTooltip="Contact Status" tooltipPosition="top" [hidden]="!featureList.RoleDelete"></i>
             </td>
           </tr>
         </ng-template>
@@ -80,7 +82,7 @@
     <div class="row">
       <div class="col-md-12">
         <label for="" class="required">Role Description</label>
-        <textarea type="text" name="description" [(ngModel)]="modalWindowData.description" minLength="3"
+        <textarea type="text" name="description" [(ngModel)]="modalWindowData.description" maxlength="59"
           required></textarea>
       </div>
     </div>
@@ -93,19 +95,19 @@
           <div class="roles-body">
             <div class="roles-item create">
               <label for="">User Create</label>
-              <p-inputSwitch name="UserCreate" [(ngModel)]="modalWindowData.UserCreate"></p-inputSwitch>
+              <p-inputSwitch name="1008" [(ngModel)]="features.UserCreate"></p-inputSwitch>
             </div>
             <div class="roles-item edit">
               <label for="">User Edit</label>
-              <p-inputSwitch name="UserEdit" [(ngModel)]="modalWindowData.UserEdit"></p-inputSwitch>
+              <p-inputSwitch name="1009" [(ngModel)]="features.UserEdit"></p-inputSwitch>
             </div>
             <div class="roles-item delete">
               <label for="">User Delete</label>
-              <p-inputSwitch name="UserDelete" [(ngModel)]="modalWindowData.UserDelete"></p-inputSwitch>
+              <p-inputSwitch name="1011" [(ngModel)]="features.UserDelete"></p-inputSwitch>
             </div>
             <div class="roles-item view">
               <label for="">User View</label>
-              <p-inputSwitch name="1007" [(ngModel)]="modalWindowData.UserView"></p-inputSwitch>
+              <p-inputSwitch name="1010" [(ngModel)]="features.UserView"></p-inputSwitch>
             </div>
           </div>
         </div>
@@ -116,19 +118,19 @@
         <div class="roles-body">
           <div class="roles-item create">
             <label for="">Company Create</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1029" [(ngModel)]="features.CompanyManagementCreate"></p-inputSwitch>
           </div>
           <div class="roles-item edit">
             <label for="">Company Edit</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1030" [(ngModel)]="features.CompanyManagementEdit"></p-inputSwitch>
           </div>
           <div class="roles-item delete">
             <label for="">Company Delete</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1032" [(ngModel)]="features.CompanyManagementDelete"></p-inputSwitch>
           </div>
           <div class="roles-item view">
             <label for="">Company View</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1031" [(ngModel)]="features.CompanyManagementView"></p-inputSwitch>
           </div>
         </div>
       </div>
@@ -142,19 +144,19 @@
         <div class="roles-body">
           <div class="roles-item create">
             <label for="">Company Contact Create</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1022" [(ngModel)]="features.CompanyContactCreate"></p-inputSwitch>
           </div>
           <div class="roles-item edit">
             <label for="">Company Contact Edit</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1023" [(ngModel)]="features.CompanyContactEdit"></p-inputSwitch>
           </div>
           <div class="roles-item delete">
             <label for="">Company Contact Delete</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1025" [(ngModel)]="features.CompanyContactDelete"></p-inputSwitch>
           </div>
           <div class="roles-item view">
             <label for="">Company Contact View</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1024" [(ngModel)]="features.CompanyContactView"></p-inputSwitch>
           </div>
         </div>
       </div>
@@ -165,19 +167,19 @@
         <div class="roles-body">
           <div class="roles-item create">
             <label for="">Roles Create</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1015" [(ngModel)]="features.RoleCreate"></p-inputSwitch>
           </div>
           <div class="roles-item edit">
             <label for="">Roles Edit</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1016" [(ngModel)]="features.RoleEdit"></p-inputSwitch>
           </div>
           <div class="roles-item delete">
             <label for="">Roles Delete</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1018" [(ngModel)]="features.RoleDelete"></p-inputSwitch>
           </div>
           <div class="roles-item view">
             <label for="">Roles View</label>
-            <p-inputSwitch name="description" [(ngModel)]="modalWindowData"></p-inputSwitch>
+            <p-inputSwitch name="1017" [(ngModel)]="features.RoleView"></p-inputSwitch>
           </div>
         </div>
       </div>

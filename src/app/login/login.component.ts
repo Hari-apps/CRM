@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.api.login(data)
       .subscribe(
         (data: any) => {
-          console.log(data);
+          // console.log(data.featureList[0].featureName);
           if (data.status === "0") {
             if (data.userType === 'SUPER_ADMIN') {
               this.router.navigate(['/admin']);
@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userName', this.form.value.userName);
             localStorage.setItem('roleType', data.userType);
             localStorage.setItem('userId', data.userId);
+            localStorage.setItem('featureList', JSON.stringify(data.featureList[0].featureName));
+
 
           } else {
             Swal.fire({

@@ -12,7 +12,7 @@
             (input)="dt.filterGlobal($event.target.value, 'contains')">
         </div>
 
-        <button (click)="addNewComapny()">Add New Comapny</button>
+        <button (click)="addNewComapny()" [hidden]="!featureList.CompanyManagementCreate">Add New Comapny</button>
       </div>
     </div>
 
@@ -38,9 +38,9 @@
             </td>
             <td class="action-icons">
               <i class="fas fa-comment" (click)="viewComapny(rowData.companyId)" pTooltip="Company Status"
-                tooltipPosition="top"></i>
+                tooltipPosition="top" ></i>
               <i class="fas fa-pen" (click)="editCompany(rowData.companyId)" pTooltip="Edit Company"
-                tooltipPosition="top"></i>
+                tooltipPosition="top" [hidden]="!featureList.CompanyManagementEdit" ></i>
               <i class="fas fa-address-card" (click)="vewcompanyContact(rowData.companyId)" pTooltip="Company Contacts"
                 tooltipPosition="top"></i>
             </td>
