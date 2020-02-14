@@ -25,8 +25,8 @@ export class ResetPasswordComponent implements OnInit {
 
 
   onSubmit(data) {
-    console.log(data.newPassword);
-    console.log(data.confirmPassword);
+    // console.log(data.newPassword);
+    // console.log(data.confirmPassword);
     let dataToApi = { newPassword: data.newPassword, emailToken: this.emailToken }
     if (data.newPassword === data.confirmPassword) {
       this.api.resetPassword(dataToApi).subscribe((data: any) => {

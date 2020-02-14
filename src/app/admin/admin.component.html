@@ -67,7 +67,7 @@
        </div>
        <div class="col-md-6">
          <label for="" class="required">User Type</label>
-         <input type="text" name="roleType"  [(ngModel)]="dataToStatus.roleType" [readonly]="true">
+         <input type="text" name="entityType"  [(ngModel)]="dataToStatus.roleType" [readonly]="true">
        </div>
       </div>
        <div class="row">
@@ -84,10 +84,17 @@
          </div>
 
        </div>
+       <div class="row">
+         <div class="col-md-8">
+          <button class="btn-danger" *ngIf="errorMessage.length!==0">{{errorMessage}}</button>
+         </div>
+         <div class="col-md-4 text-right">
+          <button class="save" type="submit" [disabled]="statusForm.invalid">Save</button>
 
-       <div class="text-right mt-3">
-         <button class="save" type="submit" [disabled]="statusForm.invalid">Save</button>
+         </div>
        </div>
+       <!-- <div class=" mt-3">
+       </div> -->
    
    </form>
   </p-dialog>

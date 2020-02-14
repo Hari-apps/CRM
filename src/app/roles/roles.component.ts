@@ -15,9 +15,13 @@ export class RolesComponent implements OnInit {
 
   display: boolean = false;
 
+  displayStatusModal: boolean = false;
+
   dailogTitle: string;
 
   modalWindowData: any = {};
+
+  dataToStatus: any = {};
 
   userName: string;
 
@@ -53,11 +57,12 @@ export class RolesComponent implements OnInit {
 
   getFeatureList() {
     this.featureList = JSON.parse(localStorage.getItem("featureList"));
-    console.log(this.featureList);
+    // console.log(this.featureList);
   }
 
   getRoles() {
     this.api.getRoles().subscribe((data: any) => {
+      console.log(data, "get Roles");
       if (data.status === "0") {
         this.userRoles = data.roleTypes;
       } else {
@@ -69,9 +74,10 @@ export class RolesComponent implements OnInit {
   getRolesList() {
     //Get Company List
     this.api.getAllRoleList().subscribe((data: any) => {
+      console.log(data, "get Roles list");
       this.RoleList = data.roleList;
 
-      console.log(data);
+      // console.log(data);
     });
   }
 
@@ -88,6 +94,7 @@ export class RolesComponent implements OnInit {
 
   //Edit Company
   editRole(id) {
+    console.log(id);
     this.features = {};
     this.statusForNew = false;
     this.id = id;
@@ -109,24 +116,51 @@ export class RolesComponent implements OnInit {
   onSubmit(data) {
     this.errorMessage = "";
 
-    this.api.createRole(data).subscribe((data: any) => {
-      if (data.status === "0") {
-        this.display = false;
-        Swal.fire(
-          "Success!",
-          "Status has been Updated successfully!",
-          "success"
-        );
+    if (this.id === 0) {
+      this.api.createRole(data).subscribe((data: any) => {
+        if (data.status === "0") {
+          this.display = false;
+          Swal.fire("Success!", "New Role is Created successfully!", "success");
 
-        this.getRolesList();
-      } else {
-        this.errorMessage = data.statusMessage;
-      }
-    });
+          this.getRolesList();
+        } else {
+          this.errorMessage = data.statusMessage;
+        }
+      });
+    } else {
+      let fullData = { ...data, roleId: this.id };
+      console.log(fullData);
+
+      this.api.updateRole(fullData).subscribe((data: any) => {
+        if (data.status === "0") {
+          this.display = false;
+          this.getRolesList();
+          Swal.fire(
+            "Success!",
+            "Role has been Updated successfully!",
+            "success"
+          );
+        } else {
+          this.errorMessage = data.statusMessage;
+        }
+      });
+    }
   }
 
   logout() {
     localStorage.removeItem("token");
     this.router.navigate(["/login"]);
+  }
+
+  showStatusModel(data) {
+    this.dailogTitle = "Role Status";
+    this.displayStatusModal = true;
+    this.dataToStatus = data;
+  }
+
+  roleStatus(data) {
+    this.api.updateRole(data).subscribe((data: any) => {
+      console.log(data);
+    });
   }
 }

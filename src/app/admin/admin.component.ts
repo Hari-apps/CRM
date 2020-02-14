@@ -58,26 +58,26 @@ export class AdminComponent implements OnInit {
       } else {
         this.errorMessage = data.statusMessage;
       }
-      console.log("featureList", this.featureList);
+      // console.log("featureList", this.featureList);
     });
   }
 
   getUserList() {
     this.api.userList().subscribe((data: any) => {
-      this.userList = data.userList;
+      this.userList = data.userList; 
     });
   }
 
   addNewUser() {
-    this.router.navigate(["/admin-form"]);
+    this.router.navigate(["/user-form"]);
   }
 
   editUser(id) {
-    this.router.navigate(["/admin-form", id]);
+    this.router.navigate(["/user-form", id]);
   }
 
   showStatusModel(data) {
-    console.log(data);
+    // console.log(data);
     this.displayStatusModal = true;
     this.dataToStatus = {
       entityId: data.userId,
@@ -88,6 +88,7 @@ export class AdminComponent implements OnInit {
   }
 
   userStatus(data) {
+    // console.log(data);
     this.api.userStatus(data).subscribe((data: any) => {
       if (data.status === "0") {
         this.getUserList();
@@ -97,6 +98,8 @@ export class AdminComponent implements OnInit {
           "success"
         );
         this.displayStatusModal = false;
+      } else {
+        this.errorMessage = data.statusMessage;
       }
     });
   }

@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit {
       isPasswordChecked = true;
       if (isPasswordChecked) {
         this.api.changePassword({ userName: userName, currentPassword: data.currentPassword, newPassword: data.newPassword }).subscribe((data: any) => {
-          console.log(data);
+          // console.log(data);
           if (data.status === "0") {
             this.form.reset();
             Swal.fire(

@@ -9,7 +9,7 @@
       <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate> 
         <img src="assets/images/chatak_logo.jpg" alt=""> 
         <div class="input-container user">
-          <input type="text" name="userName"  ngModel placeholder="User Name">
+          <input type="text" name="userName"  ngModel placeholder="User Name" autofocus>
         </div>
         <div class="input-container password">
           <input type="password" name="password" ngModel placeholder="Password">

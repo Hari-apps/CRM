@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="container mt-5">
-  <div class="list-container">
+  <div class="list-container" [hidden]="!featureList.CompanyManagementView">
     <div class="list-header">
       <div class="list-title-container">
         Company Management Search

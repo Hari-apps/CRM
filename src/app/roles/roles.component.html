@@ -3,7 +3,7 @@
 <app-header></app-header>
 
 <div class="container mt-5">
-  <div class="list-container">
+  <div class="list-container" [hidden]="!featureList.RoleView">
     <div class="list-header">
       <div class="list-title-container">
         Role Search
@@ -21,7 +21,7 @@
 
     <div class="list-body p-3">
       <p-table #dt [columns]="cols" [value]="RoleList" [paginator]="true" [rows]="5" [showLoader]="true"
-        [autoLayout]="true">
+        [autoLayout]="true" >
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -40,8 +40,8 @@
             </td>
             <td class="action-icons">
               <i class="fas fa-pen" (click)="editRole(rowData.roleId)" pTooltip="Edit Role" tooltipPosition="top" [hidden]="!featureList.RoleEdit"></i>
-              <i [ngClass]="rowData.status==='Active'?'fas fa-circle text-success':' fas fa-circle text-muted'"
-                (click)="showStatusModel(rowData)" pTooltip="Contact Status" tooltipPosition="top" [hidden]="!featureList.RoleDelete"></i>
+              <!-- <i [ngClass]="rowData.status==='Active'?'fas fa-circle text-success':' fas fa-circle text-muted'"
+                (click)="showStatusModel(rowData)" pTooltip="Contact Status" tooltipPosition="top" [hidden]="!featureList.RoleDelete"></i> -->
             </td>
           </tr>
         </ng-template>
@@ -201,15 +201,15 @@
 
 <!-- <p-dialog [header]="dailogTitle" [(visible)]="displayStatusModal" modal='true' [style]="{width: '480px'}"
   [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">
-   <form action="" class="modal-form" #statusForm="ngForm" (ngSubmit)="companyContactStatus(statusForm.value)">
+   <form action="" class="modal-form" #statusForm="ngForm" (ngSubmit)="roleStatus(statusForm.value)">
      <div class="row">
        <div class="col-md-6">
-         <label for="" class="required">Comapny Contact ID</label>
-         <input type="text" name="companyContactId" [(ngModel)]="dataToStatus.companyContactId" readonly>
+         <label for="" class="required">Role ID</label>
+         <input type="text" name="roleId" [(ngModel)]="dataToStatus.roleId" readonly>
        </div>
        <div class="col-md-6">
-         <label for="" class="required">Contact Person</label>
-         <input type="text" name="contactName"  [(ngModel)]="dataToStatus.contactName" readonly>
+         <label for="" class="required">Role Name</label>
+         <input type="text" name="roleName"  [(ngModel)]="dataToStatus.roleName" readonly>
        </div>
       </div>
        <div class="row">
@@ -221,8 +221,8 @@
            </select>
          </div>
          <div class="col-md-6">
-           <label for="">reason</label>
-           <textarea name="reason"  cols=""  rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
+           <label for="">Reason</label>
+           <textarea name="description"  cols=""  rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
          </div>
 
        </div>

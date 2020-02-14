@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   gotoProfile() {
-    this.router.navigate(['/admin-form', this.userId]);
+    this.router.navigate(['/user-form', this.userId]);
 
   }
 

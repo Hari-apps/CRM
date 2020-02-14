@@ -43,14 +43,12 @@ const routes: Routes = [
     path: 'company-contact/:id',
     component: CompanyContactComponent 
   },
-
-
   {
-    path: 'admin-form',
+    path: 'user-form',
     component: AdminFormComponent
   },
   {
-    path: 'admin-form/:id',
+    path: 'user-form/:id',
     component: AdminFormComponent
   },
   {
