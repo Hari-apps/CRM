@@ -29,6 +29,9 @@ export class AdminFormComponent implements OnInit {
   activeRoles: any;
   userId: number;
   isSaved: boolean = false;
+  regionList: any[];
+  isDisabled: boolean = false;
+
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
@@ -39,11 +42,10 @@ export class AdminFormComponent implements OnInit {
 
       if (!this.userId) {
         this.userId = 0;
-      this.hTitle = "Add"
-
-      }else{
+        this.hTitle = "Add New";
+      } else {
         this.hTitle = "Edit";
-
+        this.isDisabled = true;
       }
     });
   }
@@ -55,12 +57,15 @@ export class AdminFormComponent implements OnInit {
     if (this.userId !== 0) {
       this.getUser();
       this.readonly = true;
-    } 
+    }
+
+    this.getRegionList();
   }
 
   getUser() {
     let data = { userId: this.userId };
     this.api.getUserById(data).subscribe((data: any) => {
+      console.log(data);
       if (data.status === "0") {
         this.formData = data.userList[0];
         this.formData.country = +data.userList[0].country;
@@ -73,6 +78,12 @@ export class AdminFormComponent implements OnInit {
     });
   }
 
+  getRegionList() {
+    this.api.getRegions().subscribe((data: any) => {
+      this.regionList = data.regionRequest;
+      console.log(this.regionList);
+    });
+  }
   getRoles() {
     this.api.getRoles().subscribe((data: any) => {
       if (data.status === "0") {
@@ -126,6 +137,7 @@ export class AdminFormComponent implements OnInit {
   }
 
   onSubmit(data, action) {
+    console.log(data);
     this.errorMessage = "";
     if (data) {
       if (this.userId == 0) {

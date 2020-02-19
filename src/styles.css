@@ -641,7 +641,7 @@ body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-slider {
   margin-top: -5px;
   color: #707070;
   margin-left: 5px;
-  content: "\f2bd";
+  content: "\f0e0";
 }
 
 .pass-user-input.lock::before {
@@ -652,7 +652,7 @@ body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-slider {
   margin-top: -10px;
   color: #707070;
   margin-left: 5px;
-  content: "\f023";
+  content: "\f084";
 }
 
 

@@ -8,7 +8,7 @@
       </div>
       <div class="list-button">
         <div class="list-search">
-          <input type="text" name="" id="" placeholder="Global Search"
+          <input type="text" name=""  placeholder="Global Search"
             (input)="dt.filterGlobal($event.target.value, 'contains')">
         </div>
 
@@ -69,31 +69,31 @@
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Contact Person</label>
-        <input type="text" name="contactName" id="" [(ngModel)]="modalWindowData.contactName" minLength="3" required>
+        <input type="text" name="contactName"  [(ngModel)]="modalWindowData.contactName" minLength="3" required>
       </div>
       <div class="col-md-6">
         <label for="" class="required">Designation</label>
-        <input type="text" name="designation" id="" [(ngModel)]="modalWindowData.designation" minLength="3" required>
+        <input type="text" name="designation"  [(ngModel)]="modalWindowData.designation" minLength="3" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Email</label>
-        <input type="text" name="emailAddress" id="" [(ngModel)]="modalWindowData.emailAddress" required>
+        <input type="text" name="emailAddress"  [(ngModel)]="modalWindowData.emailAddress" required>
       </div>
       <div class="col-md-6">
         <label for="" class="required">Mobile Number</label>
-        <input type="text" name="mobileNumber" id="" [(ngModel)]="modalWindowData.mobileNumber" minLength="3" required>
+        <input type="text" pInputText  pKeyFilter="int" name="mobileNumber"  [(ngModel)]="modalWindowData.mobileNumber" minLength="3" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <label for="">Office Number</label>
-        <input type="text" name="officeNumber" id="" [(ngModel)]="modalWindowData.officeNumber">
+        <input  type="text" pInputText  pKeyFilter="int" name="officeNumber"  [(ngModel)]="modalWindowData.officeNumber">
       </div>
       <div class="col-md-6">
         <label for="" class="required">Location</label>
-        <input type="text" name="location" id="" [(ngModel)]="modalWindowData.location" minLength="3" required>
+        <input type="text" name="location"  [(ngModel)]="modalWindowData.location" minLength="3" required>
       </div>
 
     </div>
@@ -101,7 +101,7 @@
 
       <div class="col-md-12">
         <label for="">Additional Info</label>
-        <textarea rows="3" cols="27.5" name="additionalInfo" id="" [(ngModel)]="modalWindowData.additionalInfo"
+        <textarea rows="3" cols="27.5" name="additionalInfo"  [(ngModel)]="modalWindowData.additionalInfo"
           maxlength="300"></textarea>
       </div>
 
@@ -143,7 +143,7 @@
       </div>
       <div class="col-md-6">
         <label for="">reason</label>
-        <textarea name="reason" id="" cols="" rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
+        <textarea name="reason"  cols="" rows="3" [(ngModel)]="dataToStatus.reason"></textarea>
       </div>
 
     </div>

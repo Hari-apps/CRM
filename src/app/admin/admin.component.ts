@@ -36,11 +36,12 @@ export class AdminComponent implements OnInit {
 
   featureList: any[];
 
-  cols: any[] = [
-    { field: "userId", header: "User ID " },
-    { field: "userName", header: "Name" },
+
+  cols: any[] = [  
+    { field: "userName", header: "User Name" },
+    { field: "fullName", header: "Name" },
     { field: "roleName", header: "Role" },
-    { field: "countryName", header: "Region" }
+    { field: "regionName", header: "Region" }
   ];
 
   constructor(private api: ApiService, private router: Router) {}
@@ -49,7 +50,10 @@ export class AdminComponent implements OnInit {
     this.userName = window.localStorage.getItem("userName");
     this.getUserList();
     this.getFeatureList();
+   
   }
+
+
 
   getFeatureList() {
     this.api.getFeatureList().subscribe((data: any) => {
@@ -64,7 +68,8 @@ export class AdminComponent implements OnInit {
 
   getUserList() {
     this.api.userList().subscribe((data: any) => {
-      this.userList = data.userList; 
+      this.userList = data.userList;
+      console.log(this.userList);
     });
   }
 

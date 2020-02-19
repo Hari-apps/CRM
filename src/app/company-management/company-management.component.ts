@@ -91,10 +91,15 @@ export class CompanyManagementComponent implements OnInit {
   }
 
   getAccountHolders() {
-    this.api.getUsersForAccountHolder().subscribe((data: any) => {
-      this.accountHolderlist = data.list;
-      console.log(this.accountHolderlist);
-    });
+    // this.api.getUsersForAccountHolder().subscribe((data: any) => {
+    //   this.accountHolderlist = data.list;
+    //   console.log(this.accountHolderlist);
+    // });
+
+    this.api.userList().subscribe((data:any)=>{
+      console.log(data.userList);
+      this.accountHolderlist = data.userList;
+    })
   }
   //Add new Company
   addNewComapny() {
@@ -116,7 +121,7 @@ export class CompanyManagementComponent implements OnInit {
     this.dailogTitle = "Edit Company";
     this.companyList.filter(data => {
       if (data.companyId === id) {
-        this.modalWindowData = data;
+        this.modalWindowData = data; 
       }
     });
   }

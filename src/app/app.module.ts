@@ -31,6 +31,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SettingsComponent } from './settings/settings.component';
 import {PasswordModule} from 'primeng/password';
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {PasswordModule} from 'primeng/password';
     DialogModule,
     CheckboxModule,
     InputSwitchModule,
-    PasswordModule
+    PasswordModule,
+    KeyFilterModule
 
   ],
   providers: [

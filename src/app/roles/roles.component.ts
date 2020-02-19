@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ApiService } from "../api.service";
-import { roleModel } from "../modals/role.model";
 import Swal from "sweetalert2";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: "app-roles",
@@ -147,10 +146,10 @@ export class RolesComponent implements OnInit {
     }
   }
 
-  logout() {
-    localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
-  }
+  // logout() {
+  //   localStorage.removeItem("token");
+  //   this.router.navigate(["/login"]);
+  // }
 
   showStatusModel(data) {
     this.dailogTitle = "Role Status";
