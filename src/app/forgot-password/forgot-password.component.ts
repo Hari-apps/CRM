@@ -20,7 +20,6 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmit(data) {
     this.errorMessage = "";
     this.api.forgotPassword(data).subscribe((data: any) => {
-      // console.log(data);
       if (data.status === "0") {
         this.checkUser = !this.checkUser;
       } else {

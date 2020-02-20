@@ -65,7 +65,6 @@ export class AdminFormComponent implements OnInit {
   getUser() {
     let data = { userId: this.userId };
     this.api.getUserById(data).subscribe((data: any) => {
-      console.log(data);
       if (data.status === "0") {
         this.formData = data.userList[0];
         this.formData.country = +data.userList[0].country;
@@ -81,7 +80,6 @@ export class AdminFormComponent implements OnInit {
   getRegionList() {
     this.api.getRegions().subscribe((data: any) => {
       this.regionList = data.regionRequest;
-      console.log(this.regionList);
     });
   }
   getRoles() {
@@ -137,7 +135,6 @@ export class AdminFormComponent implements OnInit {
   }
 
   onSubmit(data, action) {
-    console.log(data);
     this.errorMessage = "";
     if (data) {
       if (this.userId == 0) {

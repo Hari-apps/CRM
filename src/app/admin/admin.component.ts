@@ -61,15 +61,13 @@ export class AdminComponent implements OnInit {
         this.featureList = data.featureList;
       } else {
         this.errorMessage = data.statusMessage;
-      }
-      // console.log("featureList", this.featureList);
+      } 
     });
   }
 
   getUserList() {
     this.api.userList().subscribe((data: any) => {
-      this.userList = data.userList;
-      console.log(this.userList);
+      this.userList = data.userList; 
     });
   }
 
@@ -82,7 +80,6 @@ export class AdminComponent implements OnInit {
   }
 
   showStatusModel(data) {
-    // console.log(data);
     this.displayStatusModal = true;
     this.dataToStatus = {
       entityId: data.userId,
@@ -93,7 +90,6 @@ export class AdminComponent implements OnInit {
   }
 
   userStatus(data) {
-    // console.log(data);
     this.api.userStatus(data).subscribe((data: any) => {
       if (data.status === "0") {
         this.getUserList();
@@ -114,8 +110,5 @@ export class AdminComponent implements OnInit {
     this.displayStatusModal = false;
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate(["/login"]);
-  }
+ 
 }

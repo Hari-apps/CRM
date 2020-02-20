@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    // console.log(state, next);
     if (
       localStorage.getItem("isLoggedIn") === "true" &&
       localStorage.getItem("roleType") === "SUPER_ADMIN"

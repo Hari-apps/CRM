@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.api.login(data)
       .subscribe(
         (data: any) => {
-          // console.log(data.featureList[0].featureName);
           if (data.status === "0") {
             if (data.userType === 'SUPER_ADMIN') {
               this.router.navigate(['/admin']);

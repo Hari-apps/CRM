@@ -80,7 +80,6 @@ export class CompanyManagementComponent implements OnInit {
 
   getFeatureList() {
     this.featureList = JSON.parse(localStorage.getItem("featureList"));
-    console.log(this.featureList);
   }
 
   getCompanyList() {
@@ -91,13 +90,8 @@ export class CompanyManagementComponent implements OnInit {
   }
 
   getAccountHolders() {
-    // this.api.getUsersForAccountHolder().subscribe((data: any) => {
-    //   this.accountHolderlist = data.list;
-    //   console.log(this.accountHolderlist);
-    // });
-
+ 
     this.api.userList().subscribe((data:any)=>{
-      console.log(data.userList);
       this.accountHolderlist = data.userList;
     })
   }
@@ -119,9 +113,9 @@ export class CompanyManagementComponent implements OnInit {
     this.errorMessage = "";
     this.display = true;
     this.dailogTitle = "Edit Company";
-    this.companyList.filter(data => {
+    this.companyList.filter((data:any) => {
       if (data.companyId === id) {
-        this.modalWindowData = data; 
+        this.modalWindowData = data;  
       }
     });
   }

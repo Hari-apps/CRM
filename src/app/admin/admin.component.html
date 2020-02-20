@@ -31,9 +31,9 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr>
             <td *ngFor="let col of columns">
-              <span *ngIf="col.field ==='fullName'">
+              <!-- <span *ngIf="col.field ==='fullName'">
                 {{rowData['firstName'] + " "+ rowData['lastName']}}
-              </span>
+              </span> -->
               {{rowData[col.field]}}
             </td>
             <td class="action-icons">
@@ -82,8 +82,8 @@
            </select>
          </div>
          <div class="col-md-6">
-           <label for="" class="required">reason</label>
-           <textarea name="reason"  cols=""  rows="3" [(ngModel)]="dataToStatus.reason" required></textarea>
+           <label for="" class="required">Reason</label>
+           <textarea name="reason"  rows="3" [(ngModel)]="dataToStatus.reason" required></textarea>
          </div>
 
        </div>
