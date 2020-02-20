@@ -4,7 +4,7 @@
   <div class="list-container" [hidden]="!featureList.CompanyManagementView">
     <div class="list-header">
       <div class="list-title-container">
-        Company Management Search
+        Company Management
       </div>
       <div class="list-button">
         <div class="list-search">
@@ -18,7 +18,7 @@
 
 
     <div class="list-body p-3">
-      <p-table #dt [columns]="cols" [value]="companyList" [paginator]="true" [rows]="5" [showLoader]="true"
+      <p-table #dt [columns]="cols" [value]="companyList" [paginator]="true" [rows]="10" [showLoader]="true"
         [autoLayout]="true">
         <ng-template pTemplate="header" let-columns>
           <tr>
@@ -74,7 +74,7 @@
         <input type="text" name="companyName"  [(ngModel)]="modalWindowData.companyName" minLength="3" required>
       </div>
       <div class="col-md-6">
-        <label for="" class="required">Regions</label>
+        <label for="" class="required">Region</label>
         <select name="regionId"  [(ngModel)]="modalWindowData.regionId" required>
           <option *ngFor="let region of regions" [ngValue]="region.regionId">{{region.regionName}}</option>
         </select>
@@ -110,7 +110,7 @@
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Status</label>
-        <select name="status"  [(ngModel)]="modalWindowData.status" required [disabled]="statusForNew">
+        <select name="status"  [(ngModel)]="modalWindowData.status" required disabled>
           <option *ngFor="let status of statusList" [ngValue]="status.status">{{status.status}}</option>
         </select>
       </div>
@@ -126,7 +126,7 @@
         <button *ngIf="errorMessage.length!=0" type="button" class="btn btn-danger">{{errorMessage}}</button>
       </div>
       <div class="col-md-6 text-right">
-        <button class="cancel" type="button" (click)="onHideModalWindow()">cancel</button> <button type="submit"
+        <button class="cancel" type="button" (click)="onHideModalWindow()">Cancel</button> <button type="submit"
           [disabled]="modalForm.invalid" class="save">Save</button>
       </div>
 

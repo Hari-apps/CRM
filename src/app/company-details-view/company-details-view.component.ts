@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../api.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import Swal from "sweetalert2";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-company-details-view",
@@ -17,7 +18,7 @@ export class CompanyDetailsViewComponent implements OnInit {
   newCommentData: any = {};
   companyId: number;
   data: any[];
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute, private router:Router) {
     this.route.params.subscribe((params: Params) => {
       this.companyId = +params["id"];
     });
@@ -29,7 +30,7 @@ export class CompanyDetailsViewComponent implements OnInit {
     this.userName = localStorage.getItem("userName");
     this.cols = [
       { field: "comment", header: "Comment" },
-      { field: "createdBy", header: "Created By" },
+      { field: "createdBy", header: "Commented By" },
       { field: "createDate", header: "Time" },
       { field: "status", header: "Status" }
     ];
@@ -39,6 +40,7 @@ export class CompanyDetailsViewComponent implements OnInit {
     this.api.getCompanyInteractionData(this.companyId).subscribe(
       (data: any) => {
         this.data = data.companyInteractionRequests;
+        console.log(this.data);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -72,9 +74,14 @@ export class CompanyDetailsViewComponent implements OnInit {
   getCompanyDetails() {
     this.api.getCompanyData(this.companyId).subscribe((data: any) => {
       this.companyDetails = data.customerRequest[0];
+      console.log(this.companyDetails);
     });
   }
   addNewComment() {
     this.displayAddComment = true;
+  }
+
+  goBack(){
+    this.router.navigate(['/company-management'])
   }
 }

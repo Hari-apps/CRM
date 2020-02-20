@@ -10,6 +10,7 @@ import { ApiService } from "../api.service";
   styles: []
 })
 export class AdminComponent implements OnInit {
+  
   @ViewChild("modalForm", { static: false }) form: NgForm;
 
   displayStatusModal: boolean = false;

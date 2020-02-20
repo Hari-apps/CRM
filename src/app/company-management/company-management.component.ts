@@ -41,21 +41,16 @@ export class CompanyManagementComponent implements OnInit {
     { field: "companyName", header: "Company Name" },
     { field: "regionName", header: "Region" },
     { field: "location", header: "Location" },
-    { field: "verticalName", header: "Vertical" }
+    { field: "verticalName", header: "Vertical" },
+    { field: "status", header: "Status" }
+
     // { field: '', header: 'SOW' },
     // { field: '', header: 'MSA' },
     // { field: '', header: 'Value' },
   ];
 
   statusListData: any = [];
-  statusList: any = [
-    { status: "New" },
-    { status: "DB Create" },
-    { status: "Cold" },
-    { status: "Warm" },
-    { status: "Hot" },
-    { status: "Closed" }
-  ];
+  statusList: any = [{ status: "Cold" }, { status: "Warm" }, { status: "Hot" }];
 
   statusForNew: boolean;
 
@@ -90,10 +85,9 @@ export class CompanyManagementComponent implements OnInit {
   }
 
   getAccountHolders() {
- 
-    this.api.userList().subscribe((data:any)=>{
+    this.api.userList().subscribe((data: any) => {
       this.accountHolderlist = data.userList;
-    })
+    });
   }
   //Add new Company
   addNewComapny() {
@@ -113,9 +107,9 @@ export class CompanyManagementComponent implements OnInit {
     this.errorMessage = "";
     this.display = true;
     this.dailogTitle = "Edit Company";
-    this.companyList.filter((data:any) => {
+    this.companyList.filter((data: any) => {
       if (data.companyId === id) {
-        this.modalWindowData = data;  
+        this.modalWindowData = data;
       }
     });
   }
@@ -193,10 +187,5 @@ export class CompanyManagementComponent implements OnInit {
 
   viewComapny(id) {
     this.router.navigate(["/company-details-view", id]);
-  }
-
-  logout() {
-    localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
   }
 }

@@ -3,13 +3,26 @@
 <div class="container mt-5">
   <div class="card mb-3">
     <div class="card-body company-view">
-      <div> <b> <i class="fas fa-building"></i>Company Name:</b> {{companyDetails.companyName}}</div>
-      <div> <b> <i class="fas fa-globe-africa"></i> Region:</b>  {{companyDetails.regionName}}</div>
-      <div> <b> <i class="fas fa-map-marker-alt"></i> Location:</b>  {{companyDetails.location}}</div>
-      <div> <b><i class="fas fa-ruler-vertical"></i> Vertical:</b>  {{companyDetails.verticalName}}</div>
-      <div> <b> <i class="fas fa-user-tie"></i> Account Holder:</b>  {{companyDetails.accountHolder}}</div>
-
-
+      <div>
+        <b> <i class="fas fa-building"></i>Company Name:</b>
+        {{ companyDetails.companyName }}
+      </div>
+      <div>
+        <b> <i class="fas fa-globe-africa"></i> Region:</b>
+        {{ companyDetails.regionName }}
+      </div>
+      <div>
+        <b> <i class="fas fa-map-marker-alt"></i> Location:</b>
+        {{ companyDetails.location }}
+      </div>
+      <div>
+        <b><i class="fas fa-ruler-vertical"></i> Vertical:</b>
+        {{ companyDetails.verticalName }}
+      </div>
+      <div>
+        <b> <i class="fas fa-user-tie"></i> Account Holder:</b>
+        {{ companyDetails.accountHolderName }}
+      </div>
     </div>
   </div>
   <div class="list-container">
@@ -19,25 +32,42 @@
       </div>
       <div class="list-button">
         <div class="list-search">
-          <input type="text" name=""  placeholder="Global Search"
-            (input)="contactList.filterGlobal($event.target.value, 'contains')">
+          <input
+            type="text"
+            name=""
+            placeholder="Global Search"
+            (input)="contactList.filterGlobal($event.target.value, 'contains')"
+          />
         </div>
         <button (click)="addNewComment()">Add New Comment</button>
+        <i
+          class="fas fa-arrow-left"
+          (click)="goBack()"
+          pTooltip="Go Back"
+          tooltipPosition="top"
+        ></i>
       </div>
     </div>
     <div class="list-body p-3">
-      <p-table #contactList [columns]="cols" [value]="data" [showLoader]="true" [paginator]="true" [rows]="10">
+      <p-table
+        #contactList
+        [columns]="cols"
+        [value]="data"
+        [showLoader]="true"
+        [paginator]="true"
+        [rows]="10"
+      >
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns">
-              {{col.header}}
+              {{ col.header }}
             </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr>
             <td *ngFor="let col of columns">
-              {{rowData[col.field]}}
+              {{ rowData[col.field] }}
             </td>
           </tr>
         </ng-template>
@@ -50,35 +80,57 @@
         </ng-template>
       </p-table>
       <div class="count-container">
-        Total Count: <b>{{contactList.totalRecords}}</b>
+        Total Count: <b>{{ contactList.totalRecords }}</b>
       </div>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
-<p-dialog header="Add New Comment" [(visible)]="displayAddComment" modal='true' [style]="{width: '480px'}"
-  [contentStyle]="{'overflow':'hidden', 'padding':'15px'}" (onHide)="onHideModalWindow()">
-  <form action="" class="modal-form" #statusForm="ngForm" (ngSubmit)="creatComment(statusForm.value)">
+<p-dialog
+  header="Add New Comment"
+  [(visible)]="displayAddComment"
+  modal="true"
+  [style]="{ width: '480px' }"
+  [contentStyle]="{ overflow: 'hidden', padding: '15px' }"
+  (onHide)="onHideModalWindow()"
+>
+  <form
+    action=""
+    class="modal-form"
+    #statusForm="ngForm"
+    (ngSubmit)="creatComment(statusForm.value)"
+  >
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Comment</label>
-        <textarea name="comment" id="" cols="30" rows="3" [(ngModel)]="newCommentData.comment" required></textarea>
+        <textarea
+          name="comment"
+          id=""
+          cols="30"
+          rows="3"
+          [(ngModel)]="newCommentData.comment"
+          required
+        ></textarea>
       </div>
       <div class="col-md-6">
         <label for="" class="required">Status</label>
-        <select name="status" id="" required [(ngModel)]="newCommentData.status">
-            <option value="new">New</option>
-            <option value="dbCreate">DB Create</option>
+        <select
+          name="status"
+          id=""
+          required
+          [(ngModel)]="newCommentData.status"
+        >
           <option value="cold">Cold</option>
           <option value="warm">Warm</option>
           <option value="hot">Hot</option>
-          <option value="closed">Closed</option>
         </select>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-md-12 text-right">
-        <button class="save" [disabled]='statusForm.invalid' type="submit">Save</button>
+        <button class="save" [disabled]="statusForm.invalid" type="submit">
+          Save
+        </button>
       </div>
     </div>
   </form>

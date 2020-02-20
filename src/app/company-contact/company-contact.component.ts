@@ -1,11 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2'
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ApiService } from '../api.service';
-import { Router, Params } from '@angular/router';
-import { UserModal } from '../modals/user.modal';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-company-contact',
@@ -79,7 +77,7 @@ export class CompanyContactComponent implements OnInit {
     this.errorMessage = "";
     this.modalWindowData = {};   
     this.display = true;
-    this.dailogTitle = 'Add DB';
+    this.dailogTitle = 'Add New Contact';
   }
 
   //Edit Company
@@ -87,7 +85,7 @@ export class CompanyContactComponent implements OnInit {
     this.id = id;
     this.errorMessage = "";
     this.display = true;
-    this.dailogTitle = 'Edit DB';
+    this.dailogTitle = 'Edit Contact';
     this.companyContactList.filter(data => {
       if (data.companyContactId === id) {
         this.modalWindowData = data;
@@ -101,12 +99,14 @@ export class CompanyContactComponent implements OnInit {
     this.dataToStatus = {
       companyContactId: data.companyContactId,
       contactName: data.contactName,
+      designation: data.designation,
       status: data.status,
       reason: ''
     }
   }
 
   companyContactStatus(data) {
+    console.log(data);
     this.api.companyContactChangeStatus(data).subscribe((data: any) => {
       if (data.status === '0') {
         this.getCompanyContactList();
@@ -188,9 +188,8 @@ export class CompanyContactComponent implements OnInit {
     }
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+  goBack(){
+    this.router.navigate(['/company-management'])
   }
 
 }

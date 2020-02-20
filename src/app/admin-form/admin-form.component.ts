@@ -184,9 +184,5 @@ export class AdminFormComponent implements OnInit {
       this.onSubmit(data, action);
     }
   }
-
-  logout() {
-    localStorage.clear();
-    this.router.navigate(["/login"]);
-  }
+ 
 }
