@@ -94,7 +94,9 @@ export class CompanyManagementComponent implements OnInit {
     this.id = 0;
     this.errorMessage = "";
     this.modalWindowData = {};
-    this.modalWindowData.status = this.statusList[0].status;
+    // this.modalWindowData.status = this.statusList[0].status;
+    this.modalWindowData.status = "Cold";
+
     this.display = true;
     this.dailogTitle = "Add New Company";
     this.statusForNew = true; //modalWindowData.status

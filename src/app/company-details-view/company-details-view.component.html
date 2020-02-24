@@ -32,31 +32,15 @@
       </div>
       <div class="list-button">
         <div class="list-search">
-          <input
-            type="text"
-            name=""
-            placeholder="Global Search"
-            (input)="contactList.filterGlobal($event.target.value, 'contains')"
-          />
+          <input type="text" name="" placeholder="Global Search"
+            (input)="contactList.filterGlobal($event.target.value, 'contains')" />
         </div>
         <button (click)="addNewComment()">Add New Comment</button>
-        <i
-          class="fas fa-arrow-left"
-          (click)="goBack()"
-          pTooltip="Go Back"
-          tooltipPosition="top"
-        ></i>
+        <i class="fas fa-arrow-left" (click)="goBack()" pTooltip="Go Back" tooltipPosition="top"></i>
       </div>
     </div>
     <div class="list-body p-3">
-      <p-table
-        #contactList
-        [columns]="cols"
-        [value]="data"
-        [showLoader]="true"
-        [paginator]="true"
-        [rows]="10"
-      >
+      <p-table #contactList [columns]="cols" [value]="data" [showLoader]="true" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns">
@@ -86,40 +70,17 @@
   </div>
 </div>
 <app-footer></app-footer>
-<p-dialog
-  header="Add New Comment"
-  [(visible)]="displayAddComment"
-  modal="true"
-  [style]="{ width: '480px' }"
-  [contentStyle]="{ overflow: 'hidden', padding: '15px' }"
-  (onHide)="onHideModalWindow()"
->
-  <form
-    action=""
-    class="modal-form"
-    #statusForm="ngForm"
-    (ngSubmit)="creatComment(statusForm.value)"
-  >
+<p-dialog header="Add New Comment" [(visible)]="display" modal="true" [style]="{ width: '480px' }"
+  [contentStyle]="{ overflow: 'hidden', padding: '15px' }" (onHide)="onHideModalWindow()">
+  <form class="modal-form" #modalForm="ngForm" novalidate (ngSubmit)="onSubmit(modalForm.value)">
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">Comment</label>
-        <textarea
-          name="comment"
-          id=""
-          cols="30"
-          rows="3"
-          [(ngModel)]="newCommentData.comment"
-          required
-        ></textarea>
+        <textarea name="comment"  cols="30" rows="3" [(ngModel)]="modalWindowData.comment" required></textarea>
       </div>
       <div class="col-md-6">
         <label for="" class="required">Status</label>
-        <select
-          name="status"
-          id=""
-          required
-          [(ngModel)]="newCommentData.status"
-        >
+        <select name="status"  required [(ngModel)]="modalWindowData.status">
           <option value="cold">Cold</option>
           <option value="warm">Warm</option>
           <option value="hot">Hot</option>
@@ -128,10 +89,11 @@
     </div>
     <div class="row mt-3">
       <div class="col-md-12 text-right">
-        <button class="save" [disabled]="statusForm.invalid" type="submit">
+        <button class="save" [disabled]="modalForm.invalid" type="submit">
           Save
         </button>
       </div>
     </div>
+
   </form>
 </p-dialog>

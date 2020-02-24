@@ -1,9 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../api.service";
 import { HttpErrorResponse } from "@angular/common/http";
-import Swal from "sweetalert2";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Location } from '@angular/common';
+import Swal from "sweetalert2";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: "app-company-details-view",
@@ -13,9 +12,9 @@ import { Location } from '@angular/common';
 export class CompanyDetailsViewComponent implements OnInit {
   userName: string;
   companyDetails: any = {};
-  displayAddComment: boolean = false;
+  display: boolean = false;
   cols: any;
-  newCommentData: any = {};
+  modalWindowData: any = {};
   companyId: number;
   data: any[];
   constructor(private api: ApiService, private route: ActivatedRoute, private router:Router) {
@@ -47,17 +46,17 @@ export class CompanyDetailsViewComponent implements OnInit {
       }
     );
   }
-  creatComment(data) {
-    this.addNewComment = data;
+  onSubmit(data) {
+    this.modalWindowData = data;
 
-    this.addNewComment = {
+    this.modalWindowData = {
       ...data,
       companyId: this.companyId,
       createdBy: this.userName
     };
-    this.api.createComment(this.addNewComment).subscribe((data: any) => {
+    this.api.createComment(this.modalWindowData).subscribe((data: any) => {
       if ((data.status = "00")) {
-        this.displayAddComment = false;
+        this.display = false;
         this.getCompanyList();
         Swal.fire("Success!", "Comment Added successfully!", "success");
       } else {
@@ -77,11 +76,18 @@ export class CompanyDetailsViewComponent implements OnInit {
       console.log(this.companyDetails);
     });
   }
+
+  
   addNewComment() {
-    this.displayAddComment = true;
+    this.display = true;
+     
   }
 
   goBack(){
     this.router.navigate(['/company-management'])
+  }
+
+  onHideModalWindow() {
+    this.display = false; 
   }
 }

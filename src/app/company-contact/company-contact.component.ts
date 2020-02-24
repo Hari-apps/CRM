@@ -40,6 +40,9 @@ export class CompanyContactComponent implements OnInit {
   
   dataToStatus: any = {};
 
+  companyDetails: any = {};
+
+
   cols: any[] = [
     { field: 'contactName', header: 'Contact Person' },
     { field: 'designation', header: 'Designation' },
@@ -58,9 +61,16 @@ export class CompanyContactComponent implements OnInit {
 
   ngOnInit() {
     this.userName = window.localStorage.getItem('userName');
+    this.getCompanyDetails();
     this.getCompanyContactList();
-  }
 
+  }
+  getCompanyDetails() {
+    this.api.getCompanyData(this.companyId).subscribe((data: any) => {
+      this.companyDetails = data.customerRequest[0];
+      console.log(this.companyDetails);
+    });
+  }u
   getCompanyContactList() {
     //Get Company List
     let data = {
@@ -123,6 +133,7 @@ export class CompanyContactComponent implements OnInit {
   
   onHideModalWindow() {
     this.display = false;
+    this.displayStatusModal = false;
   }
 
 
