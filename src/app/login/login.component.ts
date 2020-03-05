@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userName', this.form.value.userName);
             localStorage.setItem('roleType', data.userType);
             localStorage.setItem('userId', data.userId);
+            localStorage.setItem('userRoleName',data.userRoleName);
             localStorage.setItem('featureList', JSON.stringify(data.featureList[0].featureName));
 
 

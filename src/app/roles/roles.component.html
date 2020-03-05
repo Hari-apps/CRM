@@ -70,7 +70,7 @@
     <div class="row">
       <div class="col-md-6">
         <label for="" class="required">User Type</label>
-        <select name="roleType" [(ngModel)]="modalWindowData.roleType">
+        <select name="roleType" [(ngModel)]="modalWindowData.roleType" required>
           <option *ngFor="let role of userRoles" [ngValue]="role.roleType">{{role.roleType}}</option>
         </select>
       </div>

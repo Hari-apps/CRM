@@ -43,7 +43,7 @@ export class CompanyManagementComponent implements OnInit {
     { field: "location", header: "Location" },
     { field: "verticalName", header: "Vertical" },
     { field: "status", header: "Status" }
-
+    // {field:"userName"}
     // { field: '', header: 'SOW' },
     // { field: '', header: 'MSA' },
     // { field: '', header: 'Value' },
@@ -79,7 +79,14 @@ export class CompanyManagementComponent implements OnInit {
 
   getCompanyList() {
     //Get Company List
-    this.api.companyList().subscribe((data: any) => {
+    console.log(localStorage);
+   
+    let passData = {
+       accountHolderName : localStorage.getItem('userName'),
+       userRoleName : localStorage.getItem('userRoleName')
+    }
+
+    this.api.companyList(passData).subscribe((data: any) => {
       this.companyList = data.customerRequest;
     });
   }

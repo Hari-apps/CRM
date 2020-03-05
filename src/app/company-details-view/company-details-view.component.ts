@@ -28,10 +28,10 @@ export class CompanyDetailsViewComponent implements OnInit {
     this.getCompanyList();
     this.userName = localStorage.getItem("userName");
     this.cols = [
-      { field: "comment", header: "Comment" },
-      { field: "createdBy", header: "Commented By" },
       { field: "createDate", header: "Time" },
-      { field: "status", header: "Status" }
+      { field: "createdBy", header: "Commented By" },
+      { field: "status", header: "Status" },
+      { field: "comment", header: "Comment" }
     ];
   }
 
