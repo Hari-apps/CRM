@@ -83,13 +83,8 @@ export class ApiService {
   baseComapnyManagemtURL: string =
     "http://192.168.2.217:9083/core-service/crm/core/1/0";
 
-  // companyList() {
-  //   return this.http.get(`${this.baseComapnyManagemtURL}/getCompanyslist`);
-  // }
-
-  companyList(data) {
-    console.log("passData",data);
-    return this.http.post(`${this.baseComapnyManagemtURL}/getCompaniesByUsertype`, data);
+  companyList() {
+    return this.http.get(`${this.baseComapnyManagemtURL}/getCompanyslist`);
   }
 
   createCompany(data) {
@@ -144,7 +139,7 @@ export class ApiService {
   getCompanyData(id) {
     return this.http.post(
       "http://192.168.2.217:9083/core-service/crm/core/1/0/getCompanys",
-      { companyId : id}
+      { id }
     );
   }
 
