@@ -172,7 +172,7 @@ export class ApiService {
 
   getUsersForAccountHolder() {
     return this.http.get(
-      "http://192.168.5.163:9085/user-service/license/user/1/0/showAccountHolder"
+      "http://192.168.2.217:9085/user-service/license/user/1/0/showAccountHolder"
     );
   }
 
