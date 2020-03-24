@@ -32,7 +32,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { SettingsComponent } from './settings/settings.component';
 import {PasswordModule} from 'primeng/password';
 import {KeyFilterModule} from 'primeng/keyfilter';
-
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +73,11 @@ import {KeyFilterModule} from 'primeng/keyfilter';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
-      multi: true
+      multi: true,
+    },
+    {
+      provide : LocationStrategy, 
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]

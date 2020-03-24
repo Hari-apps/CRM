@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  baseURL: string = "http://192.168.2.217:9085/user-service/license/user/1/0";
+  baseURL: string = "http://192.168.0.102:9085/user-service/license/user/1/0";
 
   login(credentials): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.baseURL}/login`, credentials);
@@ -35,45 +35,45 @@ export class ApiService {
 
   getUserById(data) {
     return this.http.post(
-      "http://192.168.2.217:9085/user-service/license/user/1/0/getUserById",
+      "http://192.168.0.102:9085/user-service/license/user/1/0/getUserById",
       data
     );
   }
   getRegions() {
     return this.http.get(
-      "http://192.168.2.217:9083/core-service/crm/core/1/0/getRegions"
+      "http://192.168.0.102:9083/core-service/crm/core/1/0/getRegions"
     );
   }
 
   getVerticals() {
     return this.http.get(
-      "http://192.168.2.217:9083/core-service/crm/core/1/0/getVerticals"
+      "http://192.168.0.102:9083/core-service/crm/core/1/0/getVerticals"
     );
   }
 
   getRoles() {
     return this.http.get(
-      "http://192.168.2.217:9085/user-service/license/user/1/0/getRoleType"
+      "http://192.168.0.102:9085/user-service/license/user/1/0/getRoleType"
     );
-    // return this.http.post('http://192.168.2.217:9085/user-service/license/user/1/0/getRoles');
+    // return this.http.post('http://192.168.0.102:9085/user-service/license/user/1/0/getRoles');
   }
 
   getActiveRoles(data) {
     return this.http.post(
-      "http://192.168.2.217:9085/user-service/license/user/1/0/getActiveRoles",
+      "http://192.168.0.102:9085/user-service/license/user/1/0/getActiveRoles",
       data
     );
   }
 
   getCountryList() {
     return this.http.get(
-      "http://192.168.2.217:9083/core-service/license/core/1/0/getCountryList"
+      "http://192.168.0.102:9083/core-service/license/core/1/0/getCountryList"
     );
   }
 
   getStateList(data) {
     return this.http.post(
-      "http://192.168.2.217:9083/core-service/license/core/1/0/getStatesByCountryId",
+      "http://192.168.0.102:9083/core-service/license/core/1/0/getStatesByCountryId",
       data
     );
   }
@@ -81,7 +81,7 @@ export class ApiService {
   //Apis for Company and Contact
 
   baseComapnyManagemtURL: string =
-    "http://192.168.2.217:9083/core-service/crm/core/1/0";
+    "http://192.168.0.102:9083/core-service/crm/core/1/0";
 
   companyList(data) {
     return this.http.post(`${this.baseComapnyManagemtURL}/getCompanyslist`,data);
@@ -130,7 +130,7 @@ export class ApiService {
 
   getCityList(data) {
     return this.http.post(
-      "http://192.168.2.217:9083/core-service/license/core/1/0/getCitiesByStateId",
+      "http://192.168.0.102:9083/core-service/license/core/1/0/getCitiesByStateId",
       data
     );
   }
@@ -138,27 +138,27 @@ export class ApiService {
 
   getCompanyData(id) {
     return this.http.post(
-      "http://192.168.2.217:9083/core-service/crm/core/1/0/getCompanys",
+      "http://192.168.0.102:9083/core-service/crm/core/1/0/getCompanys",
       { id }
     );
   }
 
   getCompanyCommentList() {
     return this.http.get(
-      "http://192.168.2.217:9083/core-service/crm/core/1/0/getAllCompanyInteraction"
+      "http://192.168.0.102:9083/core-service/crm/core/1/0/getAllCompanyInteraction"
     );
   }
 
   createComment(data) {
     return this.http.post(
-      "http://192.168.2.217:9083/core-service/crm/core/1/0/createCompanyInteraction",
+      "http://192.168.0.102:9083/core-service/crm/core/1/0/createCompanyInteraction",
       data
     );
   }
 
   getCompanyInteractionData(id) {
     return this.http.post(
-      "http://192.168.2.217:9083/core-service/crm/core/1/0/searchCompanyInteractions",
+      "http://192.168.0.102:9083/core-service/crm/core/1/0/searchCompanyInteractions",
       { companyId: id }
     );
   }
@@ -167,7 +167,7 @@ export class ApiService {
 
   getUsersForAccountHolder() {
     return this.http.get(
-      "http://192.168.2.217:9085/user-service/license/user/1/0/showAccountHolder"
+      "http://192.168.0.102:9085/user-service/license/user/1/0/showAccountHolder"
     );
   }
 
